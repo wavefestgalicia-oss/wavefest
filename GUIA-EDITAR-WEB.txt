@@ -1,0 +1,44 @@
+CÓMO CAMBIAR PRECIOS Y CARTEL SIN TOCAR EL CÓDIGO
+===================================================
+La web lee dos pestañas de una hoja de Google Sheets. Cambias una celda y la web se actualiza
+sola (Google tarda unos 5 minutos en publicar los cambios). Si la hoja falla, la web enseña
+los datos que lleva incorporados, así que nunca se queda en blanco.
+
+PASO 1 · Crear la hoja (una sola vez)
+1. Entra en sheets.google.com y crea una hoja nueva llamada "WAVE FEST web".
+2. Renombra la primera pestaña como  cartel  y importa plantilla-cartel.csv
+   (Archivo > Importar > Subir > "Reemplazar hoja actual").
+3. Crea otra pestaña llamada  entradas  e importa plantilla-entradas.csv.
+
+PASO 2 · Publicar cada pestaña
+1. Archivo > Compartir > Publicar en la web.
+2. En el primer desplegable elige la pestaña "cartel" y en el segundo "Valores separados por comas (.csv)".
+3. Pulsa Publicar y copia el enlace. Repite con la pestaña "entradas".
+
+PASO 3 · Pegar los enlaces en index.html
+Abre index.html con un editor de texto y busca WAVE_CONFIG (está cerca del final). Pega los enlaces:
+   LINEUP_CSV:  'https://docs.google.com/spreadsheets/d/e/.../pub?gid=...&output=csv',
+   TICKETS_CSV: 'https://docs.google.com/spreadsheets/d/e/.../pub?gid=...&output=csv'
+Sube index.html al servidor. A partir de ahora no hace falta volver a subirlo para cambiar datos.
+
+PESTAÑA "entradas"  (columnas: entrada, precio, estado)
+- entrada: General, Front Stage, VIP o VIP+ (tal como se llaman en la web).
+- precio: solo el número, por ejemplo 40.
+- estado: déjalo vacío, o escribe "agotado" para que la tarjeta muestre "Agotada".
+
+PESTAÑA "cartel"  (columnas: nombre, foto, instagram, estado)
+- Cada fila es una tarjeta, en el orden de la hoja. Puedes poner todas las filas que quieras.
+- estado: "confirmado" muestra al artista. Cualquier otra cosa (o vacío) muestra la tarjeta censurada "Por confirmar".
+- nombre: el nombre del artista, como quieres que aparezca.
+- foto, tres opciones:
+    a) Un archivo subido a tu servidor en la carpeta img/, por ejemplo  img/borja-solla.jpg
+    b) Un enlace de imagen público (https://...).
+    c) Un enlace de Google Drive compartido como "Cualquier persona con el enlace" (lo convierte la web).
+  Los seis artistas actuales ya tienen foto incorporada: si dejas "foto" vacía y no cambias el nombre, conservan la suya.
+- instagram: enlace completo al perfil (opcional). Si lo pones, la tarjeta es clicable.
+- Consejo para las fotos: formato vertical, de 800 a 1200 px de ancho y menos de 300 KB.
+
+IMPORTANTE
+- No borres ni renombres las cabeceras de la primera fila.
+- Cualquiera con el enlace publicado puede LEER la hoja, pero solo quien tenga permiso de edición puede cambiarla.
+  Comparte la edición solo con gente de confianza.
