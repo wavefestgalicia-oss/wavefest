@@ -1016,21 +1016,6 @@ footer .socials a:hover{ color:var(--aqua); }
 </style>
 
 <style id="wave-legal-styles">
-/* ---------- TARJETA CTA LEGAL (enlaza a legal.html) ---------- */
-.legal-teaser{ padding:70px 0; border-top:1px solid var(--line); }
-.legal-teaser-card{
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.035);
-  border-radius:20px;
-  padding:36px;
-  display:flex;
-  flex-direction:column;
-  align-items:flex-start;
-  gap:14px;
-}
-.legal-teaser-card h2{ font-size:clamp(22px,3vw,30px); }
-.legal-teaser-card p{ max-width:640px; color:var(--chrome-dim); font-size:14.5px; line-height:1.6; }
-.legal-teaser-card .btn{ margin-top:8px; }
 
 /* WAVE FEST — Legal / compliance UI */
 .legal-area{padding:90px 0 40px;border-top:1px solid rgba(255,255,255,.08)}
@@ -1048,7 +1033,10 @@ footer .socials a:hover{ color:var(--aqua); }
 .pending{font-weight:700;text-decoration:underline}
 .legal-small{font-size:12px;opacity:.7}
 .legal-back{display:inline-block;margin-top:15px;text-decoration:underline}
-.privacy-consent{font-size:12px;line-height:1.5;opacity:.78;margin:12px 0}
+.privacy-consent{margin:14px 0}
+form.contact-form .privacy-consent label{display:flex;gap:10px;align-items:flex-start;text-transform:none;letter-spacing:0;font-family:var(--font-body);font-size:14px;line-height:1.55;font-weight:400;color:var(--chrome-dim);cursor:pointer}
+form.contact-form .privacy-consent a{color:var(--aqua);text-decoration:underline;text-underline-offset:3px}
+form.contact-form .privacy-consent input{width:18px;height:18px;flex:0 0 18px;padding:0;margin:2px 0 0;accent-color:var(--teal)}
 .privacy-consent label{display:flex;gap:9px;align-items:flex-start}
 .privacy-consent input{margin-top:3px}
 @media(max-width:800px){.legal-grid{grid-template-columns:1fr}.legal-area{padding-top:60px}}
@@ -1454,6 +1442,16 @@ main,footer,section{overflow-x:clip}
 }
 @media (max-width:600px){.travel-grid{grid-template-columns:1fr}.map-static{min-height:0}.faq-item summary{font-size:15.5px;padding:18px 50px 18px 18px}.faq-item p{padding:0 18px 18px}}
 @media (prefers-reduced-motion:reduce){.route-map .mp-pulse{animation:none}.sticky-buy{transition:none}}
+
+/* ---------- Selector de idioma ---------- */
+.lang-switch{display:inline-flex;gap:2px;padding:3px;border:1px solid var(--line);border-radius:999px;margin-left:6px;vertical-align:middle}
+.lang-switch button{background:none;border:0;color:var(--chrome-dim);font:700 11px/1 var(--font-ui);letter-spacing:.08em;padding:7px 9px;border-radius:999px;cursor:pointer}
+.lang-switch button:hover{color:var(--white)}
+.lang-switch button[aria-pressed="true"]{background:var(--wave-grad-x);color:#121212}
+.lang-switch button:focus-visible{outline:2px solid var(--teal);outline-offset:2px}
+.lang-switch-footer{margin:0}
+@media (max-width:980px){nav.links .lang-switch{margin:14px 0 0;align-self:flex-start;width:auto}}
+@media (min-width:981px) and (max-width:1260px){header.site .brand span{display:none}nav.links{gap:22px}}
 </style>
 </head>
 <body>
@@ -1475,6 +1473,7 @@ main,footer,section{overflow-x:clip}
       <a href="#faq">FAQ</a>
       <a href="#contacto">Contacto</a>
 <a href="legal.html">Legal</a>
+      <div class="lang-switch" role="group" aria-label="Idioma"><button type="button" data-lang="es" aria-pressed="true" lang="es" title="Castellano">ES</button><button type="button" data-lang="gl" aria-pressed="false" lang="gl" title="Galego">GL</button><button type="button" data-lang="en" aria-pressed="false" lang="en" title="English">EN</button></div>
     </nav>
     <a href="#entradas" class="nav-cta">Comprar entradas</a>
     <button class="burger" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="siteNav"><span></span><span></span><span></span></button>
@@ -1895,7 +1894,8 @@ main,footer,section{overflow-x:clip}
       <img src="img/logo-w.webp" alt="WAVE FEST">
       <span>WAVE FEST</span>
     </div>
-    <div class="meta">© 2027 WAVE FEST · Corcubión, A Coruña · Galicia</div>
+    <div class="meta">© 2026 WAVE FEST · Corcubión, A Coruña · Galicia</div>
+    <div class="lang-switch lang-switch-footer" role="group" aria-label="Idioma"><button type="button" data-lang="es" aria-pressed="true" lang="es" title="Castellano">ES</button><button type="button" data-lang="gl" aria-pressed="false" lang="gl" title="Galego">GL</button><button type="button" data-lang="en" aria-pressed="false" lang="en" title="English">EN</button></div>
     <div class="socials">
       <a href="mailto:hola@wavefest.es">Email</a>
       <a href="https://www.instagram.com/wavefest_official/" target="_blank" rel="noopener noreferrer">Instagram</a>
@@ -2329,16 +2329,6 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
 </script>
 
 
-<section class="legal-teaser">
-  <div class="wrap">
-    <div class="legal-teaser-card reveal">
-      <div class="legal-kicker">Información legal</div>
-      <h2>Toda la letra pequeña, en un solo sitio</h2>
-      <p>Aviso legal, privacidad, cookies, condiciones de compra, acceso, menores, seguros y condiciones VIP: consulta la información legal completa de WAVE FEST 2027 en su propia página.</p>
-      <a class="btn btn-primary" href="legal.html">Ver información legal completa</a>
-    </div>
-  </div>
-</section>
 
 
 <script>
@@ -2389,6 +2379,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
   [hero,tickets,contact].forEach(function(el){if(el)io.observe(el);});
 })();
 </script>
+<script src="i18n.js"></script>
 </body>
 
 <!-- WAVE FEST legal layer updated: confirmed ticket, re-entry, name-change and VIP conditions supplied by the organizer. -->
