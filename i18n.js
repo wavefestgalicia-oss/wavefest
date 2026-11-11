@@ -22,6 +22,18 @@
     'Ver cartel': ['Ver cartel', 'See line-up'],
     '+ Añadir al calendario': ['+ Engadir ao calendario', '+ Add to calendar'],
 
+    // ---- Qué es WAVE FEST (sección de texto para Google)
+    'El festival': ['O festival', 'The festival'],
+    'Qué es WAVE FEST': ['Que é WAVE FEST', 'What is WAVE FEST'],
+    'WAVE FEST es el festival de música urbana y electrónica de la Costa da Morte. La primera edición se celebra el sábado 31 de julio de 2027 en Corcubión (A Coruña), Galicia.': ['WAVE FEST é o festival de música urbana e electrónica da Costa da Morte. A primeira edición celébrase o sábado 31 de xullo de 2027 en Corcubión (A Coruña), Galicia.', 'WAVE FEST is the urban and electronic music festival of the Costa da Morte. The first edition takes place on Saturday 31 July 2027 in Corcubión (A Coruña), Galicia.'],
+    'Música urbana en Galicia': ['Música urbana en Galicia', 'Urban music in Galicia'],
+    'Rap, trap y sesiones de DJ durante 11 horas seguidas, de 19:00 a 06:00, con 12 artistas en el cartel y una mayoría de talento gallego.': ['Rap, trap e sesións de DJ durante 11 horas seguidas, das 19:00 ás 06:00, con 12 artistas no cartel e unha maioría de talento galego.', 'Rap, trap and DJ sets for 11 hours straight, from 19:00 to 06:00, with 12 artists on the line-up and mostly Galician talent.'],
+    'En plena Costa da Morte': ['En plena Costa da Morte', 'Right on the Costa da Morte'],
+    'Corcubión está a 3 km de Cee y a 13 km de Fisterra, a algo más de una hora de Santiago de Compostela y de A Coruña. Un festival de verano junto al mar.': ['Corcubión está a 3 km de Cee e a 13 km de Fisterra, a pouco máis dunha hora de Santiago de Compostela e da Coruña. Un festival de verán á beira do mar.', 'Corcubión is 3 km from Cee and 13 km from Fisterra, just over an hour from Santiago de Compostela and A Coruña. A summer festival by the sea.'],
+    'Hasta 10.000 personas': ['Ata 10.000 persoas', 'Up to 10,000 people'],
+    'Un único día al aire libre en el Campo de fútbol Novo Cubeleiro, con entradas General, Front Stage y VIP a la venta en Futura Tickets.': ['Un único día ao aire libre no Campo de fútbol Novo Cubeleiro, con entradas General, Front Stage e VIP á venda en Futura Tickets.', 'One single open-air day at the Novo Cubeleiro football ground, with General, Front Stage and VIP tickets on sale at Futura Tickets.'],
+    'Logo de WAVE FEST Galicia': ['Logo de WAVE FEST Galicia', 'WAVE FEST Galicia logo'],
+
     // ---- Portada
     'Festival de música urbana': ['Festival de música urbana', 'Urban music festival'],
     'Faltan para el 31 de julio de 2027': ['Quedan para o 31 de xullo de 2027', 'Countdown to 31 July 2027'],
@@ -259,9 +271,9 @@
   ];
 
   var META = {
-    title: ['WAVE FEST 2027 — Festival de música urbana · Corcubión, A Coruña', 'WAVE FEST 2027 — Urban music festival · Corcubión, A Coruña'],
-    description: ['WAVE FEST · 31 de xullo de 2027 · Campo de fútbol Novo Cubeleiro, Corcubión, A Coruña. Festival de música urbana en plena Costa da Morte.',
-                  'WAVE FEST · 31 July 2027 · Novo Cubeleiro football ground, Corcubión, A Coruña, Galicia. Urban music festival on the Costa da Morte.']
+    title: ['WAVE FEST Galicia 2027 · Festival de música urbana en Corcubión', 'WAVE FEST Galicia 2027 · Urban music festival in Corcubión, Spain'],
+    description: ['WAVE FEST Galicia: festival de música urbana e electrónica o 31 de xullo de 2027 en Corcubión, Costa da Morte. Cartel, entradas desde 16 € e toda a info.',
+                  'WAVE FEST Galicia: urban and electronic music festival on 31 July 2027 in Corcubión, Costa da Morte, Spain. Line-up, tickets from €16 and all the info.']
   };
 
   var LANGS = ['es', 'gl', 'en'];
@@ -332,6 +344,14 @@
       if (!md.__es) md.__es = md.getAttribute('content');
       md.setAttribute('content', current === 'es' ? md.__es : META.description[i]);
     }
+    // SEO: cada idioma tiene su propia URL (?lang=gl / ?lang=en) y se declara como canónica
+    var base = 'https://wavefest.es/';
+    var canon = document.querySelector('link[rel="canonical"]');
+    if (canon) canon.setAttribute('href', current === 'es' ? base : base + '?lang=' + current);
+    var ogu = document.querySelector('meta[property="og:url"]');
+    if (ogu) ogu.setAttribute('content', current === 'es' ? base : base + '?lang=' + current);
+    var ogl = document.querySelector('meta[property="og:locale"]');
+    if (ogl) ogl.setAttribute('content', { es: 'es_ES', gl: 'gl_ES', en: 'en_GB' }[current]);
     var btns = document.querySelectorAll('.lang-switch button');
     for (var b = 0; b < btns.length; b++) {
       btns[b].setAttribute('aria-pressed', btns[b].getAttribute('data-lang') === current ? 'true' : 'false');
@@ -362,6 +382,8 @@
       var s = localStorage.getItem('wavefest_lang');
       if (s && LANGS.indexOf(s) >= 0) return s;
     } catch (e) {}
+    // Buscadores y bots: siempre castellano en la URL principal (Googlebot navega en inglés)
+    if (/bot|crawl|spider|slurp|lighthouse|facebookexternalhit|whatsapp|telegram|preview/i.test(navigator.userAgent || '')) return 'es';
     var n = (navigator.language || 'es').slice(0, 2).toLowerCase();
     if (n === 'gl') return 'gl';
     if (n === 'es' || n === 'ca' || n === 'eu' || n === 'pt') return 'es';

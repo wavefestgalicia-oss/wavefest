@@ -1,0 +1,5 @@
+# WAVE FEST · https://wavefest.es
+User-agent: *
+Allow: /
+
+Sitemap: https://wavefest.es/sitemap.xml
