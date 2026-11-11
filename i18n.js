@@ -382,6 +382,12 @@
     if (ogu) ogu.setAttribute('content', current === 'es' ? base : base + '?lang=' + current);
     var ogl = document.querySelector('meta[property="og:locale"]');
     if (ogl) ogl.setAttribute('content', { es: 'es_ES', gl: 'gl_ES', en: 'en_GB' }[current]);
+    // Enlaces a las páginas en gallego (gl/...) cuando la web está en gallego
+    var sub = document.querySelectorAll('a[data-gl]');
+    for (var k = 0; k < sub.length; k++) {
+      if (!sub[k].hasAttribute('data-es')) sub[k].setAttribute('data-es', sub[k].getAttribute('href'));
+      sub[k].setAttribute('href', sub[k].getAttribute(current === 'gl' ? 'data-gl' : 'data-es'));
+    }
     var btns = document.querySelectorAll('.lang-switch button');
     for (var b = 0; b < btns.length; b++) {
       btns[b].setAttribute('aria-pressed', btns[b].getAttribute('data-lang') === current ? 'true' : 'false');

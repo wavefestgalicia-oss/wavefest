@@ -23,6 +23,7 @@
   }
   function norm(s) { return String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim(); }
   function get(url) { return fetch(url, { cache: 'no-store' }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.text(); }).then(parseCSV); }
+  var GL = document.documentElement.lang === 'gl';
   function esc(t) { return String(t).replace(/[&<>"]/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]; }); }
 
   var lista = document.getElementById('lista-artistas');
@@ -45,7 +46,7 @@
         var r = rows.filter(function (o) { return norm(o.entrada) === norm(tr.getAttribute('data-entrada')); })[0];
         var cel = tr.querySelector('.precio');
         if (!r || !cel) return;
-        if (/agotad/.test(norm(r.estado))) { cel.textContent = 'Agotada'; return; }
+        if (/agotad/.test(norm(r.estado))) { cel.textContent = GL ? 'Esgotada' : 'Agotada'; return; }
         var p = String(r.precio || '').replace(/\s/g, '');
         if (p) cel.textContent = /€/.test(p) ? p.replace('€', ' €') : p + ' €';
       });
@@ -53,7 +54,8 @@
       if (tramo && t) {
         var n = String(t.precio || '').trim();
         if (!n || n === '0') tramo.style.display = 'none';
-        else tramo.innerHTML = '<strong>Ahora: tramo ' + esc(n) + '.</strong> ' + esc(t.estado || 'El precio sube en el siguiente tramo.');
+        else tramo.innerHTML = GL ? '<strong>Agora: tramo ' + esc(n) + '.</strong> O prezo sobe no seguinte tramo.'
+          : '<strong>Ahora: tramo ' + esc(n) + '.</strong> ' + esc(t.estado || 'El precio sube en el siguiente tramo.');
       }
     }).catch(function () {});
   }
