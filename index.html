@@ -1372,7 +1372,7 @@ body.has-sticky footer{padding-bottom:90px}
 .hero-share:hover{color:#25d366}
 @media (max-width:760px){.signup{grid-template-columns:1fr;padding:22px}.signup .row{flex-direction:column}.signup button{padding:14px}}
 
-/* ===== Visual 2026-11: ola animada, cartel duotono, iconos de entradas, cuenta atrás ===== */
+/* ===== Visual 2026-11: ola animada, iconos de entradas, cuenta atrás ===== */
 .hero-flow{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 .hero-flow .aurora{position:absolute;width:70vmax;height:70vmax;border-radius:50%;opacity:.5;will-change:transform}
 .hero-flow .a1{left:-25vmax;top:-30vmax;background:radial-gradient(circle,rgba(11,203,251,.32),transparent 62%);animation:aur1 18s ease-in-out infinite alternate}
@@ -1394,17 +1394,10 @@ body.has-sticky footer{padding-bottom:90px}
 .cd-box::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(143,252,212,.18) 50%,transparent 65%);transform:translateX(-120%);animation:cdShine 6s ease-in-out infinite}
 .cd-box:nth-child(2)::after{animation-delay:.25s}.cd-box:nth-child(3)::after{animation-delay:.5s}.cd-box:nth-child(4)::after{animation-delay:.75s}
 @keyframes cdShine{0%,70%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
-/* Cartel: fotos con el mismo tono de la marca; en color al pasar por encima */
-.lineup-card.confirmed{isolation:isolate}
-.lineup-card.confirmed .artist-photo{filter:grayscale(1) sepia(1) hue-rotate(148deg) saturate(2.4) contrast(1.08) brightness(.92);transition:filter .5s ease,transform .7s cubic-bezier(.16,.8,.28,1)}
-.lineup-card.confirmed::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(160deg,rgba(11,203,251,.55) 0%,rgba(4,38,43,.2) 55%,rgba(143,252,212,.5) 100%);mix-blend-mode:overlay;opacity:1;transition:opacity .5s ease}
-.lineup-card.confirmed:hover .artist-photo,.lineup-card.confirmed:focus-within .artist-photo{filter:none;transform:scale(1.06)}
-.lineup-card.confirmed:hover::before,.lineup-card.confirmed:focus-within::before{opacity:0}
+.lineup-card.confirmed .artist-photo{transition:transform .7s cubic-bezier(.16,.8,.28,1)}
+.lineup-card.confirmed:hover .artist-photo{transform:scale(1.05)}
 .lineup-card.confirmed .lineup-foot .slot{transition:letter-spacing .4s ease,color .4s}
 .lineup-card.confirmed:hover .lineup-foot .slot{letter-spacing:.03em;color:var(--aqua)}
-@media (hover:none){.lineup-card.confirmed.in-view::before{animation:duoFade 1.6s ease 1.2s forwards}.lineup-card.confirmed.in-view .artist-photo{animation:duoColor 1.6s ease 1.2s forwards}}
-@keyframes duoFade{to{opacity:.35}}
-@keyframes duoColor{to{filter:grayscale(.2) contrast(1.04)}}
 .lineup-grid .lineup-card.reveal{transition:opacity .7s ease var(--rd,0s),transform .7s cubic-bezier(.16,.8,.28,1) var(--rd,0s),box-shadow .3s,border-color .3s}
 .marquee span.item.artist{color:var(--ink)}
 .marquee span.item i{font-style:normal}
