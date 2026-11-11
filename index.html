@@ -1416,6 +1416,35 @@ body.has-sticky footer{padding-bottom:90px}
 .per-person b{color:var(--white)}
 @media (min-width:901px){.ticket-card.vip-plus{transform:translateY(-10px)}.ticket-card.vip-plus.reveal:not(.in-view){transform:translateY(30px)}}
 @media (prefers-reduced-motion:reduce){.hero-flow .aurora,.hero-flow .sea,.cd-box::after,.hero-ribbon .ribbon{animation:none}.hero-ribbon .ribbon{stroke-dashoffset:0}.lineup-card.confirmed .artist-photo{transition:none}}
+/* ===== Visual 2026-11 (2): cifras, iconos, olas entre secciones, pie ===== */
+.wave-div{height:clamp(46px,6vw,80px);overflow:hidden;position:relative;line-height:0;margin:-1px 0}
+.wave-div svg{position:absolute;bottom:0;left:0;width:200%;height:100%;will-change:transform}
+.wave-div .wd-back{animation:seaMove 34s linear infinite reverse;bottom:6px}
+.wave-div .wd-front{animation:seaMove 22s linear infinite}
+.stats-row{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin:10px 0 34px}
+.stat{position:relative;padding:26px 20px 22px;border-radius:22px;border:1px solid rgba(11,203,251,.28);background:radial-gradient(120% 100% at 0% 0%,rgba(11,203,251,.14),transparent 60%),rgba(255,255,255,.02);overflow:hidden}
+.stat{container-type:inline-size}
+.stat b{display:block;font:900 clamp(40px,30cqi,96px)/.95 var(--font-display);white-space:nowrap;font-variant-numeric:tabular-nums;letter-spacing:-.02em;background:var(--wave-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 22px rgba(11,203,251,.35))}
+.stat b[data-count="10000"]{font-size:clamp(34px,21cqi,84px)}
+.stat b{height:calc(clamp(40px,30cqi,96px)*.95);display:flex;align-items:flex-end}
+.stat span{display:block;margin-top:10px;font:700 12px var(--font-ui);letter-spacing:.14em;text-transform:uppercase;color:var(--chrome)}
+.travel-card .ic{display:block;width:40px;height:40px;padding:8px;margin-bottom:14px;border-radius:12px;color:var(--aqua);background:rgba(11,203,251,.1);border:1px solid rgba(11,203,251,.28)}
+.travel-card{transition:border-color .3s}
+.travel-card:hover{border-color:rgba(11,203,251,.45)}
+footer{padding-top:0;position:relative;overflow:hidden}
+.footer-hero{position:relative;padding:clamp(70px,10vw,120px) 0 clamp(50px,7vw,80px);border-bottom:1px solid var(--line);margin-bottom:34px;overflow:hidden}
+.footer-hero::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--wave-grad-x);opacity:.8;box-shadow:0 0 24px rgba(11,203,251,.7)}
+.footer-big{position:absolute;left:50%;bottom:-.2em;transform:translateX(-50%);white-space:nowrap;font:900 italic clamp(90px,19vw,300px)/1 var(--font-display);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1.5px rgba(11,203,251,.16);pointer-events:none;user-select:none}
+.footer-cta{position:relative;text-align:center}
+.fc-kicker{font:700 12px var(--font-ui);letter-spacing:.18em;text-transform:uppercase;color:var(--aqua);margin-bottom:12px}
+.fc-title{font:900 clamp(34px,5.6vw,72px)/1 var(--font-display);text-transform:uppercase;color:var(--white);margin-bottom:28px}
+.fc-actions{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:16px 22px}
+.fc-social{display:flex;gap:12px}
+.fc-social a{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;border:1px solid rgba(11,203,251,.4);color:var(--aqua);background:rgba(11,203,251,.06);transition:transform .25s,background .25s,color .25s,box-shadow .25s}
+.fc-social a:hover{transform:translateY(-3px);background:var(--wave-grad);color:var(--ink);box-shadow:0 10px 30px -10px rgba(11,203,251,.8)}
+.fc-social .ic{width:22px;height:22px}
+@media (max-width:900px){.stats-row{grid-template-columns:repeat(2,1fr);gap:12px}.stat{padding:20px 16px 18px}}
+@media (prefers-reduced-motion:reduce){.wave-div svg{animation:none}}
 </style>
 </head>
 <body>
@@ -1429,6 +1458,14 @@ body.has-sticky footer{padding-bottom:90px}
 <symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 13h8" stroke="currentColor" stroke-width="1.8"/></symbol>
 <symbol id="i-cup" viewBox="0 0 24 24"><path d="M6 6h12l-1.5 15h-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13 6l2-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.6 11h10.8" stroke="currentColor" stroke-width="1.8"/></symbol>
 <symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20a6 6 0 0 1 12 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 5.2a3 3 0 0 1 0 5.6M18 14.5a6 6 0 0 1 3 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-car" viewBox="0 0 24 24"><path d="M5 16V11l2-5h10l2 5v5M3 16h18v3h-3v-3M3 16v3h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7.5" cy="13.5" r="1" fill="currentColor"/><circle cx="16.5" cy="13.5" r="1" fill="currentColor"/><path d="M5 11h14" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-bus" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="15" rx="3" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 11h16M7 18v3M17 18v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><circle cx="8" cy="14.5" r="1" fill="currentColor"/><circle cx="16" cy="14.5" r="1" fill="currentColor"/></symbol>
+<symbol id="i-taxi" viewBox="0 0 24 24"><path d="M9 3h6l1 3M5 16v-5l2-5h10l2 5v5M3 16h18v3h-3v-3M3 16v3h3" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M5 11h14" stroke="currentColor" stroke-width="1.8"/><circle cx="7.5" cy="13.5" r="1" fill="currentColor"/><circle cx="16.5" cy="13.5" r="1" fill="currentColor"/></symbol>
+<symbol id="i-bed" viewBox="0 0 24 24"><path d="M3 5v15M3 16h18v4" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 16v-2a4 4 0 0 0-4-4h-6v6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="7" cy="12" r="2" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-wave" viewBox="0 0 24 24"><path d="M2 9c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 14c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2M2 19c2.5 0 2.5-2 5-2s2.5 2 5 2 2.5-2 5-2 2.5 2 5 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-insta" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor"/></symbol>
+<symbol id="i-tiktok" viewBox="0 0 24 24"><path d="M14 3v12.5a3.5 3.5 0 1 1-3.5-3.5M14 3c.5 2.8 2.4 4.6 5 5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="i-mail" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
 </defs></svg>
 <a class="skip-link" href="#top">Saltar al contenido</a>
 
@@ -1545,10 +1582,9 @@ body.has-sticky footer{padding-bottom:90px}
     </div>
   </section>
 
-  <div class="divider" style="background:var(--ink-2);">
-    <svg viewBox="0 0 1600 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 C260,60 520,0 780,30 C1040,60 1300,0 1600,30 L1600,70 L0,70 Z" fill="#191919"/>
-    </svg>
+  <div class="divider wave-div" style="background:#121212" aria-hidden="true">
+    <svg class="wd-back" viewBox="0 0 3240 80" preserveAspectRatio="none"><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#191919" opacity=".55"/></svg>
+    <svg class="wd-front" viewBox="0 0 3240 80" preserveAspectRatio="none"><defs><linearGradient id="wdg0" x1="0" x2="1"><stop offset="0" stop-color="#0bcbfb"/><stop offset=".5" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb"/></linearGradient></defs><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#191919"/><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34" fill="none" stroke="url(#wdg0)" stroke-width="2.5" vector-effect="non-scaling-stroke" opacity=".7"/></svg>
   </div>
 
   <!-- ================= ENTRADAS ================= -->
@@ -1652,10 +1688,9 @@ body.has-sticky footer{padding-bottom:90px}
     </div>
   </section>
 
-  <div class="divider" style="background:var(--ink-2);">
-    <svg viewBox="0 0 1600 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,50 C260,10 520,70 780,40 C1040,10 1300,70 1600,40 L1600,0 L0,0 Z" fill="#121212"/>
-    </svg>
+  <div class="divider wave-div" style="background:#191919" aria-hidden="true">
+    <svg class="wd-back" viewBox="0 0 3240 80" preserveAspectRatio="none"><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#121212" opacity=".55"/></svg>
+    <svg class="wd-front" viewBox="0 0 3240 80" preserveAspectRatio="none"><defs><linearGradient id="wdg1" x1="0" x2="1"><stop offset="0" stop-color="#0bcbfb"/><stop offset=".5" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb"/></linearGradient></defs><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#121212"/><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34" fill="none" stroke="url(#wdg1)" stroke-width="2.5" vector-effect="non-scaling-stroke" opacity=".7"/></svg>
   </div>
 
   <!-- ================= UBICACION ================= -->
@@ -1714,21 +1749,25 @@ body.has-sticky footer{padding-bottom:90px}
 
       <div class="travel-grid">
         <div class="travel-card reveal">
+          <svg class="ic" aria-hidden="true"><use href="#i-car"/></svg>
           <span class="k">En coche</span>
           <h3>Coche y aparcamiento</h3>
           <p>Desde Santiago son unos 90 km y desde A Coruña unos 100 km, siempre en dirección a Cee. Antes del festival publicaremos aquí las zonas de aparcamiento habilitadas. Compartir coche ahorra plazas y gasolina.</p>
         </div>
         <div class="travel-card reveal" style="--rd:.06s">
+          <svg class="ic" aria-hidden="true"><use href="#i-bus"/></svg>
           <span class="k">Transporte público</span>
           <h3>Autobús</h3>
           <p>Monbus conecta Santiago de Compostela con la Costa da Morte (línea Santiago – Cee – Fisterra). Consulta horarios en <a href="https://www.monbus.es" target="_blank" rel="noopener">monbus.es</a>. Por la noche no hay autobuses regulares: si habilitamos buses especiales de ida y vuelta, lo anunciaremos aquí y en <a href="https://www.instagram.com/wavefest_official/" target="_blank" rel="noopener">@wavefest_official</a>.</p>
         </div>
         <div class="travel-card reveal" style="--rd:.12s">
+          <svg class="ic" aria-hidden="true"><use href="#i-taxi"/></svg>
           <span class="k">A la salida</span>
           <h3>Taxi</h3>
           <p>Hay taxis en Corcubión y en Cee. El festival termina a las 06:00 y la demanda a esa hora es muy alta: reserva tu taxi de vuelta con antelación o queda con alguien que no beba.</p>
         </div>
         <div class="travel-card reveal" style="--rd:.18s">
+          <svg class="ic" aria-hidden="true"><use href="#i-bed"/></svg>
           <span class="k">Dormir cerca</span>
           <h3>Alojamiento</h3>
           <p>Corcubión, Cee, Fisterra, Muxía y Carnota tienen hoteles, pensiones, casas rurales y campings. Es temporada alta: reserva cuanto antes.</p>
@@ -1737,10 +1776,9 @@ body.has-sticky footer{padding-bottom:90px}
     </div>
   </section>
 
-  <div class="divider" style="background:var(--ink-2);">
-    <svg viewBox="0 0 1600 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 C260,60 520,0 780,30 C1040,60 1300,0 1600,30 L1600,70 L0,70 Z" fill="#191919"/>
-    </svg>
+  <div class="divider wave-div" style="background:#121212" aria-hidden="true">
+    <svg class="wd-back" viewBox="0 0 3240 80" preserveAspectRatio="none"><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#191919" opacity=".55"/></svg>
+    <svg class="wd-front" viewBox="0 0 3240 80" preserveAspectRatio="none"><defs><linearGradient id="wdg2" x1="0" x2="1"><stop offset="0" stop-color="#0bcbfb"/><stop offset=".5" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb"/></linearGradient></defs><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#191919"/><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34" fill="none" stroke="url(#wdg2)" stroke-width="2.5" vector-effect="non-scaling-stroke" opacity=".7"/></svg>
   </div>
 
   <!-- ================= PATROCINIOS ================= -->
@@ -1765,6 +1803,10 @@ body.has-sticky footer{padding-bottom:90px}
   </section>
 
   <!-- ================= EL FESTIVAL (texto para Google) ================= -->
+  <div class="divider wave-div" style="background:#191919" aria-hidden="true">
+    <svg class="wd-back" viewBox="0 0 3240 80" preserveAspectRatio="none"><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#121212" opacity=".55"/></svg>
+    <svg class="wd-front" viewBox="0 0 3240 80" preserveAspectRatio="none"><defs><linearGradient id="wdg4" x1="0" x2="1"><stop offset="0" stop-color="#0bcbfb"/><stop offset=".5" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb"/></linearGradient></defs><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#121212"/><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34" fill="none" stroke="url(#wdg4)" stroke-width="2.5" vector-effect="non-scaling-stroke" opacity=".7"/></svg>
+  </div>
   <section id="festival" style="background:var(--ink-2);">
     <div class="wrap">
       <div class="section-head reveal">
@@ -1772,16 +1814,25 @@ body.has-sticky footer{padding-bottom:90px}
         <h2>Qué es WAVE FEST</h2>
         <p>WAVE FEST es el festival de música urbana y electrónica de la Costa da Morte. La primera edición se celebra el sábado 31 de julio de 2027 en Corcubión (A Coruña), Galicia.</p>
       </div>
+      <div class="stats-row">
+        <div class="stat reveal"><b data-count="12">12</b><span>artistas</span></div>
+        <div class="stat reveal" style="--rd:.08s"><b data-count="11">11</b><span>horas de música</span></div>
+        <div class="stat reveal" style="--rd:.16s"><b data-count="10000">10.000</b><span>personas</span></div>
+        <div class="stat reveal" style="--rd:.24s"><b data-count="1">1</b><span>noche en la Costa da Morte</span></div>
+      </div>
       <div class="travel-grid about-grid">
         <div class="travel-card reveal">
+          <svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>
           <h3>Música urbana en Galicia</h3>
           <p>Rap, trap, reguetón y sesiones de DJ durante 11 horas seguidas, de 19:00 a 06:00, con 12 artistas en el cartel y una mayoría de talento gallego.</p>
         </div>
         <div class="travel-card reveal" style="--rd:.06s">
+          <svg class="ic" aria-hidden="true"><use href="#i-wave"/></svg>
           <h3>En plena Costa da Morte</h3>
           <p>Corcubión está a 3 km de Cee y a 13 km de Fisterra, a algo más de una hora de Santiago de Compostela y de A Coruña. Un festival de verano junto al mar.</p>
         </div>
         <div class="travel-card reveal" style="--rd:.12s">
+          <svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>
           <h3>Hasta 10.000 personas</h3>
           <p>Un único día al aire libre en el Campo de fútbol Novo Cubeleiro, con entradas General, Front Stage y VIP a la venta en Futura Tickets.</p>
         </div>
@@ -1789,6 +1840,10 @@ body.has-sticky footer{padding-bottom:90px}
     </div>
   </section>
 
+  <div class="divider wave-div" style="background:#121212" aria-hidden="true">
+    <svg class="wd-back" viewBox="0 0 3240 80" preserveAspectRatio="none"><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#191919" opacity=".55"/></svg>
+    <svg class="wd-front" viewBox="0 0 3240 80" preserveAspectRatio="none"><defs><linearGradient id="wdg5" x1="0" x2="1"><stop offset="0" stop-color="#0bcbfb"/><stop offset=".5" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb"/></linearGradient></defs><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#191919"/><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34" fill="none" stroke="url(#wdg5)" stroke-width="2.5" vector-effect="non-scaling-stroke" opacity=".7"/></svg>
+  </div>
   <!-- ================= FAQ ================= -->
   <section id="faq" style="background:var(--ink);">
     <div class="wrap">
@@ -1854,10 +1909,9 @@ body.has-sticky footer{padding-bottom:90px}
     </div>
   </section>
 
-  <div class="divider" style="background:var(--ink);">
-    <svg viewBox="0 0 1600 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,20 C260,60 520,0 780,30 C1040,60 1300,0 1600,30 L1600,70 L0,70 Z" fill="#121212"/>
-    </svg>
+  <div class="divider wave-div" style="background:#191919" aria-hidden="true">
+    <svg class="wd-back" viewBox="0 0 3240 80" preserveAspectRatio="none"><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#121212" opacity=".55"/></svg>
+    <svg class="wd-front" viewBox="0 0 3240 80" preserveAspectRatio="none"><defs><linearGradient id="wdg3" x1="0" x2="1"><stop offset="0" stop-color="#0bcbfb"/><stop offset=".5" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb"/></linearGradient></defs><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34 V80 H0 Z" fill="#121212"/><path d="M0,34 C180,6 360,6 540,34 S900,62 1080,34 S1440,6 1620,34 S1980,62 2160,34 S2520,6 2700,34 S3060,62 3240,34" fill="none" stroke="url(#wdg3)" stroke-width="2.5" vector-effect="non-scaling-stroke" opacity=".7"/></svg>
   </div>
 
   <!-- ================= CONTACTO ================= -->
@@ -1944,6 +1998,21 @@ body.has-sticky footer{padding-bottom:90px}
 </div>
 
 <footer>
+  <div class="footer-hero">
+    <div class="footer-big" aria-hidden="true">WAVE FEST</div>
+    <div class="wrap footer-cta">
+      <p class="fc-kicker">31.07.2027 · Corcubión, Costa da Morte</p>
+      <p class="fc-title">Nos vemos en la ola.</p>
+      <div class="fc-actions">
+        <a href="#entradas" class="btn btn-primary" data-track="footer-entradas">Comprar entradas</a>
+        <div class="fc-social">
+          <a href="https://www.instagram.com/wavefest_official/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de WAVE FEST"><svg class="ic" aria-hidden="true"><use href="#i-insta"/></svg></a>
+          <a href="https://www.tiktok.com/@wavefest_" target="_blank" rel="noopener noreferrer" aria-label="TikTok de WAVE FEST"><svg class="ic" aria-hidden="true"><use href="#i-tiktok"/></svg></a>
+          <a href="mailto:hola@wavefest.es" aria-label="Email de WAVE FEST"><svg class="ic" aria-hidden="true"><use href="#i-mail"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="wrap footer-inner">
     <div class="footer-brand">
       <img src="img/logo-w.webp" alt="WAVE FEST" width="120" height="79">
@@ -2166,6 +2235,22 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
       }
     }).catch(function(e){ console.warn('WAVE FEST: no se pudieron cargar los precios, se usan los de la web.', e); });
   }
+})();
+// ---------- Cifras que suben al aparecer ----------
+(function(){
+  var els = document.querySelectorAll('[data-count]');
+  if (!els.length || REDUCE_MOTION || !('IntersectionObserver' in window)) return;
+  function fmt(n){ var en = document.documentElement.lang === 'en'; return String(n).replace(/\B(?=(\d{3})+(?!\d))/g, en ? ',' : '.'); }
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if (!e.isIntersecting) return; io.unobserve(e.target);
+      var el = e.target, to = +el.getAttribute('data-count'), t0 = null, dur = to > 100 ? 1800 : 1200;
+      function step(t){ if (!t0) t0 = t; var k = Math.min(1, (t - t0) / dur), v = Math.round(to * (1 - Math.pow(1 - k, 3)));
+        el.textContent = fmt(v); if (k < 1) requestAnimationFrame(step); }
+      el.textContent = fmt(0); requestAnimationFrame(step);
+    });
+  }, { threshold:.6 });
+  els.forEach(function(el){ io.observe(el); });
 })();
 // ---------- VIP: precio por persona ----------
 (function(){
