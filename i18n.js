@@ -39,6 +39,22 @@
     'Festival Costa da Morte': ['Festival Costa da Morte', 'Costa da Morte festival'],
     '31 de julio en Galicia': ['31 de xullo en Galicia', '31 July in Galicia'],
     'Prensa': ['Prensa', 'Press'],
+    // ---- Registro, tramos y compartir
+    'Entérate antes que nadie': ['Entérate antes ca ninguén', 'Be the first to know'],
+    'Deja tu email y te avisamos de los próximos artistas del cartel y de cada cambio de tramo de entradas, antes de que suban de precio.': ['Déixanos o teu email e avisámoste dos próximos artistas do cartel e de cada cambio de tramo de entradas, antes de que soban de prezo.', 'Leave your email and we will tell you about the next artists and every ticket tier change, before prices go up.'],
+    'Avisadme': ['Avisádeme', 'Notify me'],
+    'y declaro tener al menos 16 años.': ['e declaro ter polo menos 16 anos.', 'and confirm I am at least 16 years old.'],
+    'Quiero recibir por email novedades, avisos de venta de entradas y promociones de WAVE FEST y sus patrocinadores. Puedo darme de baja cuando quiera.': ['Quero recibir por email novidades, avisos de venda de entradas e promocións de WAVE FEST e os seus patrocinadores. Podo darme de baixa cando queira.', 'I want to receive news, ticket sale alerts and promotions from WAVE FEST and its sponsors by email. I can unsubscribe at any time.'],
+    'Información básica sobre protección de datos': ['Información básica sobre protección de datos', 'Basic data protection information'],
+    'Tramo 1 · A la venta': ['Tramo 1 · Á venda', 'Tier 1 · On sale'],
+    'El precio sube en el siguiente tramo. Compra ahora al mejor precio.': ['O prezo sobe no seguinte tramo. Merca agora ao mellor prezo.', 'Prices go up in the next tier. Buy now at the best price.'],
+    'Precio tramo 1': ['Prezo tramo 1', 'Tier 1 price'],
+    'Vente conmigo por WhatsApp': ['Vente comigo por WhatsApp', 'Invite friends on WhatsApp'],
+    'Entradas para grupos': ['Entradas para grupos', 'Group tickets'],
+    'Compártelo por WhatsApp': ['Compárteo por WhatsApp', 'Share on WhatsApp'],
+    '¡Hecho! Te avisaremos antes que nadie.': ['Feito! Avisarémoste antes ca ninguén.', 'Done! You will be the first to know.'],
+    'Escribe un email válido.': ['Escribe un email válido.', 'Please enter a valid email.'],
+    'Tienes que aceptar el aviso de privacidad.': ['Tes que aceptar o aviso de privacidade.', 'You need to accept the privacy notice.'],
     'Logo de WAVE FEST Galicia': ['Logo de WAVE FEST Galicia', 'WAVE FEST Galicia logo'],
 
     // ---- Portada
