@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://wavefest.es/</loc>
     <lastmod>2026-11-11</lastmod>
@@ -7,7 +7,6 @@
     <xhtml:link rel="alternate" hreflang="gl" href="https://wavefest.es/?lang=gl"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://wavefest.es/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wavefest.es/"/>
-    <image:image><image:loc>https://wavefest.es/img/og-wavefest.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://wavefest.es/?lang=gl</loc>
@@ -24,5 +23,37 @@
     <xhtml:link rel="alternate" hreflang="gl" href="https://wavefest.es/?lang=gl"/>
     <xhtml:link rel="alternate" hreflang="en" href="https://wavefest.es/?lang=en"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wavefest.es/"/>
+  </url>
+  <url>
+    <loc>https://wavefest.es/artistas/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://wavefest.es/entradas/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://wavefest.es/como-llegar/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://wavefest.es/costa-da-morte/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://wavefest.es/que-es-wave-fest/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://wavefest.es/festival-costa-da-morte/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://wavefest.es/31-de-julio-galicia/</loc>
+    <lastmod>2026-11-11</lastmod>
+  </url>
+  <url>
+    <loc>https://wavefest.es/prensa/</loc>
+    <lastmod>2026-11-11</lastmod>
   </url>
 </urlset>

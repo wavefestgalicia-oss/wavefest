@@ -27,11 +27,18 @@
     'Qué es WAVE FEST': ['Que é WAVE FEST', 'What is WAVE FEST'],
     'WAVE FEST es el festival de música urbana y electrónica de la Costa da Morte. La primera edición se celebra el sábado 31 de julio de 2027 en Corcubión (A Coruña), Galicia.': ['WAVE FEST é o festival de música urbana e electrónica da Costa da Morte. A primeira edición celébrase o sábado 31 de xullo de 2027 en Corcubión (A Coruña), Galicia.', 'WAVE FEST is the urban and electronic music festival of the Costa da Morte. The first edition takes place on Saturday 31 July 2027 in Corcubión (A Coruña), Galicia.'],
     'Música urbana en Galicia': ['Música urbana en Galicia', 'Urban music in Galicia'],
-    'Rap, trap y sesiones de DJ durante 11 horas seguidas, de 19:00 a 06:00, con 12 artistas en el cartel y una mayoría de talento gallego.': ['Rap, trap e sesións de DJ durante 11 horas seguidas, das 19:00 ás 06:00, con 12 artistas no cartel e unha maioría de talento galego.', 'Rap, trap and DJ sets for 11 hours straight, from 19:00 to 06:00, with 12 artists on the line-up and mostly Galician talent.'],
+    'Rap, trap, reguetón y sesiones de DJ durante 11 horas seguidas, de 19:00 a 06:00, con 12 artistas en el cartel y una mayoría de talento gallego.': ['Rap, trap, reguetón e sesións de DJ durante 11 horas seguidas, das 19:00 ás 06:00, con 12 artistas no cartel e unha maioría de talento galego.', 'Rap, trap, reggaeton and DJ sets for 11 hours straight, from 19:00 to 06:00, with 12 artists on the line-up and mostly Galician talent.'],
     'En plena Costa da Morte': ['En plena Costa da Morte', 'Right on the Costa da Morte'],
     'Corcubión está a 3 km de Cee y a 13 km de Fisterra, a algo más de una hora de Santiago de Compostela y de A Coruña. Un festival de verano junto al mar.': ['Corcubión está a 3 km de Cee e a 13 km de Fisterra, a pouco máis dunha hora de Santiago de Compostela e da Coruña. Un festival de verán á beira do mar.', 'Corcubión is 3 km from Cee and 13 km from Fisterra, just over an hour from Santiago de Compostela and A Coruña. A summer festival by the sea.'],
     'Hasta 10.000 personas': ['Ata 10.000 persoas', 'Up to 10,000 people'],
     'Un único día al aire libre en el Campo de fútbol Novo Cubeleiro, con entradas General, Front Stage y VIP a la venta en Futura Tickets.': ['Un único día ao aire libre no Campo de fútbol Novo Cubeleiro, con entradas General, Front Stage e VIP á venda en Futura Tickets.', 'One single open-air day at the Novo Cubeleiro football ground, with General, Front Stage and VIP tickets on sale at Futura Tickets.'],
+    'Galicia 2027 · Festival de música urbana y electrónica': ['Galicia 2027 · Festival de música urbana e electrónica', 'Galicia 2027 · Urban & electronic music festival'],
+    'Qué hacer en la Costa da Morte': ['Que facer na Costa da Morte', 'Things to do on the Costa da Morte'],
+    'Cómo llegar': ['Como chegar', 'Getting there'],
+    'Artistas': ['Artistas', 'Artists'],
+    'Festival Costa da Morte': ['Festival Costa da Morte', 'Costa da Morte festival'],
+    '31 de julio en Galicia': ['31 de xullo en Galicia', '31 July in Galicia'],
+    'Prensa': ['Prensa', 'Press'],
     'Logo de WAVE FEST Galicia': ['Logo de WAVE FEST Galicia', 'WAVE FEST Galicia logo'],
 
     // ---- Portada
@@ -271,9 +278,9 @@
   ];
 
   var META = {
-    title: ['WAVE FEST Galicia 2027 · Festival de música urbana en Corcubión', 'WAVE FEST Galicia 2027 · Urban music festival in Corcubión, Spain'],
-    description: ['WAVE FEST Galicia: festival de música urbana e electrónica o 31 de xullo de 2027 en Corcubión, Costa da Morte. Cartel, entradas desde 16 € e toda a info.',
-                  'WAVE FEST Galicia: urban and electronic music festival on 31 July 2027 in Corcubión, Costa da Morte, Spain. Line-up, tickets from €16 and all the info.']
+    title: ['WAVE FEST Galicia 2027 · Festival de música urbana e electrónica · Corcubión', 'WAVE FEST Galicia 2027 · Urban & electronic music festival · Corcubión, Spain'],
+    description: ['WAVE FEST Galicia 2027: festival de música urbana e electrónica na Costa da Morte. 31 de xullo de 2027 en Corcubión, a carón de Cee e Fisterra. Entradas desde 16 €.',
+                  'WAVE FEST Galicia 2027: urban and electronic music festival on the Costa da Morte, Spain. 31 July 2027 in Corcubión, next to Cee and Fisterra. Tickets from €16.']
   };
 
   var LANGS = ['es', 'gl', 'en'];
