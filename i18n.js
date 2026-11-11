@@ -53,6 +53,8 @@
     'Entradas para grupos': ['Entradas para grupos', 'Group tickets'],
     'Compártelo por WhatsApp': ['Compárteo por WhatsApp', 'Share on WhatsApp'],
     '¡Hecho! Te avisaremos antes que nadie.': ['Feito! Avisarémoste antes ca ninguén.', 'Done! You will be the first to know.'],
+    'Este email ya estaba registrado: ya estás dentro.': ['Este email xa estaba rexistrado: xa estás dentro.', 'This email was already registered: you are in.'],
+    '¡Hecho! Te hemos enviado un email de bienvenida (mira también en Promociones o Spam).': ['Feito! Enviámosche un email de benvida (mira tamén en Promocións ou Spam).', 'Done! We have sent you a welcome email (check Promotions or Spam too).'],
     'Escribe un email válido.': ['Escribe un email válido.', 'Please enter a valid email.'],
     'Tienes que aceptar el aviso de privacidad.': ['Tes que aceptar o aviso de privacidade.', 'You need to accept the privacy notice.'],
     'artistas por anunciar': ['artistas por anunciar', 'artists to be announced'],
