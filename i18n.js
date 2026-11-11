@@ -55,6 +55,8 @@
     '¡Hecho! Te avisaremos antes que nadie.': ['Feito! Avisarémoste antes ca ninguén.', 'Done! You will be the first to know.'],
     'Escribe un email válido.': ['Escribe un email válido.', 'Please enter a valid email.'],
     'Tienes que aceptar el aviso de privacidad.': ['Tes que aceptar o aviso de privacidade.', 'You need to accept the privacy notice.'],
+    'artistas por anunciar': ['artistas por anunciar', 'artists to be announced'],
+    'Regístrate y entérate el primero →': ['Rexístrate e entérate o primeiro →', 'Sign up and be the first to know →'],
     'Logo de WAVE FEST Galicia': ['Logo de WAVE FEST Galicia', 'WAVE FEST Galicia logo'],
 
     // ---- Portada
@@ -290,7 +292,10 @@
   var PATTERNS = [
     [/^Acceso (\d+)$/, ['Acceso $1', 'Access $1']],
     [/^Artista (\d+)$/, ['Artista $1', 'Artist $1']],
-    [/^Instagram de (.+)$/, ['Instagram de $1', '$1 on Instagram']]
+    [/^Instagram de (.+)$/, ['Instagram de $1', '$1 on Instagram']],
+    [/^Tramo (\d+) · A la venta$/, ['Tramo $1 · Á venda', 'Tier $1 · On sale']],
+    [/^Precio tramo (\d+)$/, ['Prezo tramo $1', 'Tier $1 price']],
+    [/^\+(\d+)$/, ['+$1', '+$1']]
   ];
 
   var META = {
