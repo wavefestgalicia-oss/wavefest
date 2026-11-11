@@ -1602,7 +1602,7 @@ main,footer,section{overflow-x:clip}
           <label class="chk"><input type="checkbox" name="privacidad" required><span>He leído y acepto el <a href="legal.html#privacidad">aviso de privacidad</a> y declaro tener al menos 16 años.</span></label>
           <label class="chk"><input type="checkbox" name="newsletter"><span>Quiero recibir por email novedades, avisos de venta de entradas y promociones de WAVE FEST y sus patrocinadores. Puedo darme de baja cuando quiera.</span></label>
           <div class="msg" role="status" aria-live="polite"></div>
-          <details><summary>Información básica sobre protección de datos</summary>Responsable: WAVE FEST, S.L. (NIF B05863147). Finalidad: enviarte información y comunicaciones sobre el festival. Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros salvo obligación legal; se alojan en Google y FormSubmit (proveedores de servicios). Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a hola@wavefest.es. Más información en el <a href="legal.html#privacidad">aviso de privacidad</a>.</details>
+          <details><summary>Información básica sobre protección de datos</summary>Responsable: WAVE FEST, S.L. (NIF B05863147). Finalidad: enviarte información y comunicaciones sobre el festival. Legitimación: tu consentimiento. Destinatarios: no se ceden datos a terceros salvo obligación legal; se alojan en Google (proveedor de servicios). Derechos: acceso, rectificación, supresión, oposición, limitación y portabilidad escribiendo a hola@wavefest.es. Más información en el <a href="legal.html#privacidad">aviso de privacidad</a>.</details>
         </form>
       </div>
     </div>
@@ -2032,9 +2032,9 @@ window.WAVE_CONFIG = {
   LINEUP_CSV: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdODD2SlTcJr78gKTbij1H4oN48Dhrkqtb7faC75i_O6GuuIao2Pl82JunSTTJzq9-mnCD03XGmVN6/pub?gid=935534751&single=true&output=csv',   // pestaña "cartel"
   TICKETS_CSV: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdODD2SlTcJr78gKTbij1H4oN48Dhrkqtb7faC75i_O6GuuIao2Pl82JunSTTJzq9-mnCD03XGmVN6/pub?gid=703769537&single=true&output=csv',  // pestaña "entradas"
   SPONSORS_CSV: 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdODD2SlTcJr78gKTbij1H4oN48Dhrkqtb7faC75i_O6GuuIao2Pl82JunSTTJzq9-mnCD03XGmVN6/pub?gid=2146790173&single=true&output=csv',  // pestaña "patrocinadores"
-  // Registro de emails ("Entérate antes que nadie"): pega aquí la URL /exec del script de Google
-  // que usa wavefest.es para guardar los emails en la hoja. Si está vacío, los registros llegan por email a wavefestgalicia@gmail.com.
-  REGISTRO_URL: '',
+  // Registro de emails ("Entérate antes que nadie"): script de Google que guarda los emails en la hoja "Registros WAVE FEST"
+  // (la misma que wavefest.es). Si se deja vacío, los registros llegan por email a wavefestgalicia@gmail.com.
+  REGISTRO_URL: 'https://script.google.com/macros/s/AKfycbylc_k_yiAn8R8uzJP_0viiNqW5fX-utcN2GO_gQaJL8ykqcYGQFZiQr3rTkzbydP4v/exec',
   // Estadísticas de visitas sin cookies (goatcounter.com): escribe el nombre de tu cuenta, p. ej. 'wavefest'.
   GOATCOUNTER: ''
 };
@@ -2420,10 +2420,10 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
     btn.disabled = true; say('Enviando…');
     var fd = new FormData();
     fd.append('email', email);
-    fd.append('newsletter', form.newsletter.checked ? 'si' : 'no');
-    fd.append('privacidad', 'si');
-    fd.append('origen', location.hostname + location.pathname);
-    fd.append('fecha', new Date().toISOString());
+    fd.append('privacidad', 'Sí');
+    fd.append('comunicaciones', form.newsletter.checked ? 'Sí' : 'No');
+    fd.append('origen', location.hostname);
+    fd.append('idioma', (document.documentElement.lang || 'es') + ' / ' + (navigator.language || ''));
     var req;
     if (CFG.REGISTRO_URL) {
       req = fetch(CFG.REGISTRO_URL, { method: 'POST', mode: 'no-cors', body: fd });
