@@ -1371,9 +1371,72 @@ body.has-sticky footer{padding-bottom:90px}
 .hero-share svg{width:16px;height:16px}
 .hero-share:hover{color:#25d366}
 @media (max-width:760px){.signup{grid-template-columns:1fr;padding:22px}.signup .row{flex-direction:column}.signup button{padding:14px}}
+
+/* ===== Visual 2026-11: ola animada, cartel duotono, iconos de entradas, cuenta atrás ===== */
+.hero-flow{position:absolute;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.hero-flow .aurora{position:absolute;width:70vmax;height:70vmax;border-radius:50%;opacity:.5;will-change:transform}
+.hero-flow .a1{left:-25vmax;top:-30vmax;background:radial-gradient(circle,rgba(11,203,251,.32),transparent 62%);animation:aur1 18s ease-in-out infinite alternate}
+.hero-flow .a2{right:-30vmax;top:-10vmax;background:radial-gradient(circle,rgba(143,252,212,.22),transparent 62%);animation:aur2 22s ease-in-out infinite alternate}
+.hero-flow .a3{left:15vw;bottom:-45vmax;background:radial-gradient(circle,rgba(11,120,251,.25),transparent 62%);animation:aur3 26s ease-in-out infinite alternate}
+@keyframes aur1{to{transform:translate(18vw,14vh) scale(1.15)}}
+@keyframes aur2{to{transform:translate(-16vw,18vh) scale(.9)}}
+@keyframes aur3{to{transform:translate(-12vw,-12vh) scale(1.1)}}
+.hero-flow .sea{position:absolute;left:0;bottom:0;width:200%;height:clamp(90px,16vh,170px);will-change:transform;animation:seaMove linear infinite}
+.hero-flow .s1{bottom:34px;animation-duration:26s;opacity:.9}
+.hero-flow .s2{bottom:16px;animation-duration:18s;animation-direction:reverse}
+.hero-flow .s3{animation-duration:12s}
+@keyframes seaMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero-ribbon .ribbon{animation:ribbonDraw 2.4s cubic-bezier(.45,.05,.2,1) .2s forwards,ribbonGlow 5s ease-in-out 2.6s infinite}
+@keyframes ribbonGlow{50%{stroke-width:30px;opacity:.75}}
+.cd-box b.pop{animation:cdPop .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes cdPop{0%{transform:translateY(-6px) scale(1.08);opacity:.55}100%{transform:none;opacity:1}}
+.cd-box{position:relative;overflow:hidden}
+.cd-box::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(143,252,212,.18) 50%,transparent 65%);transform:translateX(-120%);animation:cdShine 6s ease-in-out infinite}
+.cd-box:nth-child(2)::after{animation-delay:.25s}.cd-box:nth-child(3)::after{animation-delay:.5s}.cd-box:nth-child(4)::after{animation-delay:.75s}
+@keyframes cdShine{0%,70%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+/* Cartel: fotos con el mismo tono de la marca; en color al pasar por encima */
+.lineup-card.confirmed{isolation:isolate}
+.lineup-card.confirmed .artist-photo{filter:grayscale(1) sepia(1) hue-rotate(148deg) saturate(2.4) contrast(1.08) brightness(.92);transition:filter .5s ease,transform .7s cubic-bezier(.16,.8,.28,1)}
+.lineup-card.confirmed::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(160deg,rgba(11,203,251,.55) 0%,rgba(4,38,43,.2) 55%,rgba(143,252,212,.5) 100%);mix-blend-mode:overlay;opacity:1;transition:opacity .5s ease}
+.lineup-card.confirmed:hover .artist-photo,.lineup-card.confirmed:focus-within .artist-photo{filter:none;transform:scale(1.06)}
+.lineup-card.confirmed:hover::before,.lineup-card.confirmed:focus-within::before{opacity:0}
+.lineup-card.confirmed .lineup-foot .slot{transition:letter-spacing .4s ease,color .4s}
+.lineup-card.confirmed:hover .lineup-foot .slot{letter-spacing:.03em;color:var(--aqua)}
+@media (hover:none){.lineup-card.confirmed.in-view::before{animation:duoFade 1.6s ease 1.2s forwards}.lineup-card.confirmed.in-view .artist-photo{animation:duoColor 1.6s ease 1.2s forwards}}
+@keyframes duoFade{to{opacity:.35}}
+@keyframes duoColor{to{filter:grayscale(.2) contrast(1.04)}}
+.lineup-grid .lineup-card.reveal{transition:opacity .7s ease var(--rd,0s),transform .7s cubic-bezier(.16,.8,.28,1) var(--rd,0s),box-shadow .3s,border-color .3s}
+.marquee span.item.artist{color:var(--ink)}
+.marquee span.item i{font-style:normal}
+/* Entradas: iconos y VIP destacada */
+.ticket-card .feats,.ticket-card .perks{list-style:none;margin:16px 0 4px;padding:0;display:grid;gap:9px;font-size:13.5px;line-height:1.35;color:var(--white)}
+.ticket-card .feats li,.ticket-card .perks li{display:flex;align-items:center;gap:10px;padding:0}
+.ticket-card .perks li::before{content:none}
+.ticket-card .ic{flex:none;width:30px;height:30px;padding:6px;border-radius:9px;color:var(--aqua);background:rgba(11,203,251,.1);border:1px solid rgba(11,203,251,.28)}
+.ticket-card.vip-plus{position:relative;border-color:rgba(143,252,212,.55);background:linear-gradient(165deg,rgba(143,252,212,.12),rgba(11,203,251,.04) 45%,rgba(18,18,18,0) 100%)}
+.ticket-card.vip-plus .ic{color:var(--ink);background:var(--wave-grad);border-color:transparent}
+.ticket-card.vip-plus .tag{color:var(--aqua)}
+.ticket-card.vip-plus .access{color:var(--aqua)}
+.vip-badge{position:absolute;top:-13px;right:20px;padding:6px 12px;border-radius:999px;background:var(--wave-grad);color:var(--ink);font:800 10.5px var(--font-ui);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 8px 24px -8px rgba(11,203,251,.8)}
+.ticket-card.vip-plus{overflow:visible}
+.per-person{display:inline-block;align-self:flex-start;margin:10px 0 2px;padding:5px 11px;border-radius:999px;border:1px dashed rgba(143,252,212,.5);font:700 12px var(--font-ui);color:var(--aqua)}
+.per-person b{color:var(--white)}
+@media (min-width:901px){.ticket-card.vip-plus{transform:translateY(-10px)}.ticket-card.vip-plus.reveal:not(.in-view){transform:translateY(30px)}}
+@media (prefers-reduced-motion:reduce){.hero-flow .aurora,.hero-flow .sea,.cd-box::after,.hero-ribbon .ribbon{animation:none}.hero-ribbon .ribbon{stroke-dashoffset:0}.lineup-card.confirmed .artist-photo{transition:none}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="i-ticket" viewBox="0 0 24 24"><path d="M3 8a2 2 0 0 0 2-2h14a2 2 0 0 0 2 2v2a2 2 0 0 0 0 4v2a2 2 0 0 0-2 2H5a2 2 0 0 0-2-2v-2a2 2 0 0 0 0-4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M14 6v12" stroke="currentColor" stroke-width="1.8" stroke-dasharray="2 2"/></symbol>
+<symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5l11-2v13" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><circle cx="6.5" cy="18" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="17.5" cy="16" r="2.5" fill="none" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-stage" viewBox="0 0 24 24"><path d="M3 20h18M5 20v-5h14v5M7 15l2-9h6l2 9" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M12 3v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+<symbol id="i-speaker" viewBox="0 0 24 24"><rect x="6" y="3" width="12" height="18" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="14" r="3" fill="none" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="7.5" r="1" fill="currentColor"/></symbol>
+<symbol id="i-crown" viewBox="0 0 24 24"><path d="M3 8l4.5 4L12 5l4.5 7L21 8l-2 11H5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></symbol>
+<symbol id="i-bottle" viewBox="0 0 24 24"><path d="M10 2h4v4l2 3v12a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1V9l2-3z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 13h8" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-cup" viewBox="0 0 24 24"><path d="M6 6h12l-1.5 15h-9z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M13 6l2-4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6.6 11h10.8" stroke="currentColor" stroke-width="1.8"/></symbol>
+<symbol id="i-users" viewBox="0 0 24 24"><circle cx="9" cy="8" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M3 20a6 6 0 0 1 12 0" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M16 5.2a3 3 0 0 1 0 5.6M18 14.5a6 6 0 0 1 3 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</defs></svg>
 <a class="skip-link" href="#top">Saltar al contenido</a>
 
 <div class="scroll-progress" id="scrollProgress"></div>
@@ -1404,6 +1467,12 @@ body.has-sticky footer{padding-bottom:90px}
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="hero-noise"></div>
+    <div class="hero-flow" aria-hidden="true">
+      <span class="aurora a1"></span><span class="aurora a2"></span><span class="aurora a3"></span>
+      <svg class="sea s1" viewBox="0 0 2880 160" preserveAspectRatio="none"><path d="M0,60 C120,20 240,20 360,60 S600,100 720,60 S960,20 1080,60 S1320,100 1440,60 S1680,20 1800,60 S2040,100 2160,60 S2400,20 2520,60 S2760,100 2880,60 V160 H0 Z" fill="url(#seaG1)"/><defs><linearGradient id="seaG1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0bcbfb" stop-opacity=".22"/><stop offset="1" stop-color="#0bcbfb" stop-opacity="0"/></linearGradient></defs></svg>
+      <svg class="sea s2" viewBox="0 0 2880 160" preserveAspectRatio="none"><path d="M0,60 C120,20 240,20 360,60 S600,100 720,60 S960,20 1080,60 S1320,100 1440,60 S1680,20 1800,60 S2040,100 2160,60 S2400,20 2520,60 S2760,100 2880,60 V160 H0 Z" fill="url(#seaG2)"/><defs><linearGradient id="seaG2" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#8ffcd4" stop-opacity=".2"/><stop offset="1" stop-color="#8ffcd4" stop-opacity="0"/></linearGradient></defs></svg>
+      <svg class="sea s3" viewBox="0 0 2880 160" preserveAspectRatio="none"><path d="M0,60 C120,20 240,20 360,60 S600,100 720,60 S960,20 1080,60 S1320,100 1440,60 S1680,20 1800,60 S2040,100 2160,60 S2400,20 2520,60 S2760,100 2880,60 V160 H0 Z" fill="url(#seaG3)"/><defs><linearGradient id="seaG3" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#0bcbfb" stop-opacity=".35"/><stop offset=".7" stop-color="#191919" stop-opacity=".9"/><stop offset="1" stop-color="#191919"/></linearGradient></defs></svg>
+    </div>
 
     <div class="hero-ribbon" id="waveLayerMid" aria-hidden="true">
       <svg viewBox="0 0 1440 810" preserveAspectRatio="xMinYMid slice" xmlns="http://www.w3.org/2000/svg">
@@ -1514,6 +1583,11 @@ body.has-sticky footer{padding-bottom:90px}
           <div class="price">16€</div>
           <small class="price-note">IVA incluido · gastos de gestión no incluidos</small>
           <p>La entrada base para vivir el festival de principio a fin. Solo tiene acceso a la zona general del recinto.</p>
+          <ul class="feats">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-ticket"/></svg>Acceso a la zona general</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>Todo el cartel</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-clock"/></svg>11 horas de música</li>
+          </ul>
           <div class="line-sep"></div>
           <span class="access">Acceso solo zona general</span>
         </div>
@@ -1524,20 +1598,27 @@ body.has-sticky footer{padding-bottom:90px}
           <div class="price">35€</div>
           <small class="price-note">IVA incluido · gastos de gestión no incluidos</small>
           <p>Zona preferente junto al escenario principal, más cerca del sonido y de los artistas, sin renunciar al ambiente general.</p>
+          <ul class="feats">
+            <li><svg class="ic" aria-hidden="true"><use href="#i-stage"/></svg>Pegado al escenario</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-speaker"/></svg>Más cerca del sonido</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-music"/></svg>Todo el cartel</li>
+          </ul>
           <div class="line-sep"></div>
           <span class="access">Zona preferente escenario</span>
         </div>
-        <div class="ticket-card reveal" style="--rd:.16s">
+        <div class="ticket-card vip-plus reveal" style="--rd:.16s">
+          <span class="vip-badge">La mejor experiencia</span>
           <span class="tag">Acceso 03</span>
           <h3>VIP</h3>
           <div class="price">120€</div>
           <small class="price-note">IVA incluido · gastos de gestión no incluidos</small>
+          <span class="per-person" id="vipPerPerson">Sale a 30 € por persona</span>
           <p>Área exclusiva con barra propia, mejores vistas y acceso más ágil al recinto durante toda la jornada.</p>
           <ul class="perks">
-            <li>Zona VIP + barra propia</li>
-            <li>1 botella de alcohol</li>
-            <li>12 refrescos</li>
-            <li>Incluido para 4 personas</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-crown"/></svg>Zona VIP + barra propia</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-bottle"/></svg>1 botella de alcohol</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-cup"/></svg>12 refrescos</li>
+            <li><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>Incluido para 4 personas</li>
           </ul>
           <div class="line-sep"></div>
           <span class="access">Zona VIP + barra propia</span>
@@ -1958,7 +2039,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
       card.style.setProperty('--rd', (Math.min(i, 8) * 0.07) + 's');
       var ig = safeUrl(it.instagram);
       if (it.confirmed && it.name){
-        card.className = 'lineup-card confirmed reveal reveal-zoom in-view';
+        card.className = 'lineup-card confirmed reveal reveal-zoom';
         if (ig){ card.style.cursor = 'pointer'; }
         card.innerHTML =
           (ig ? '<a class="artist-ig-link" href="' + esc(ig) + '" target="_blank" rel="noopener" aria-label="Instagram de ' + esc(it.name) + '">' : '') +
@@ -1967,7 +2048,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
           '<div class="lineup-foot"><span class="slot">' + esc(it.name) + '</span><span class="status">Confirmado</span></div>' +
           (ig ? '</a>' : '');
       } else {
-        card.className = 'lineup-card reveal reveal-zoom in-view';
+        card.className = 'lineup-card reveal reveal-zoom';
         card.innerHTML =
           '<span class="tbc">' + n + '</span>' +
           '<div class="silhouette"><svg viewBox="0 0 210 200" xmlns="http://www.w3.org/2000/svg"><path d="' + silhouettes[i % silhouettes.length] + '" fill="#0bcbfb"/></svg></div>' +
@@ -1980,7 +2061,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
     if (pending > 0){
       var more = document.createElement('a');
       more.href = '#registro';
-      more.className = 'lineup-card lineup-more reveal reveal-zoom in-view';
+      more.className = 'lineup-card lineup-more reveal reveal-zoom';
       more.setAttribute('data-track', 'cartel-mas-artistas');
       more.innerHTML =
         '<div class="noise-overlay"></div>' +
@@ -1989,6 +2070,8 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
         '<span class="more-cta">Regístrate y entérate el primero →</span></div>';
       grid.appendChild(more);
     }
+    if (window.WAVE_reveal) window.WAVE_reveal(grid.querySelectorAll('.reveal'));
+    if (window.WAVE_marquee) window.WAVE_marquee(list.map(function(it){ return it.name; }));
   }
   render(DEFAULT);
   window.WAVE_DEFAULT_LINEUP = DEFAULT;
@@ -2091,6 +2174,20 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
     }).catch(function(e){ console.warn('WAVE FEST: no se pudieron cargar los precios, se usan los de la web.', e); });
   }
 })();
+// ---------- VIP: precio por persona ----------
+(function(){
+  var out = document.getElementById('vipPerPerson'), card = out && out.closest('.ticket-card'), price = card && card.querySelector('.price');
+  if (!price) return;
+  function upd(){
+    var n = parseFloat(String(price.textContent).replace(/[^0-9,.]/g, '').replace(',', '.'));
+    if (!n || card.classList.contains('sold-out')){ out.style.display = 'none'; return; }
+    var pp = n / 4, txt = (pp % 1 ? pp.toFixed(2).replace('.', ',') : String(pp)) + ' €';
+    out.style.display = '';
+    out.innerHTML = 'Sale a <b>' + txt + '</b> por persona';
+  }
+  upd();
+  if ('MutationObserver' in window) new MutationObserver(upd).observe(price, { childList:true, characterData:true, subtree:true });
+})();
 // ---------- Patrocinadores ----------
 // Para añadir un patrocinador: copia una línea dentro de su categoría.
 //   name  -> nombre de la marca (obligatorio)
@@ -2175,8 +2272,15 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
 (function(){
   var track = document.getElementById('marqueeTrack');
   if (!track) return;
-  var phrase = '<span class="item">WAVE FEST <i>·</i> <b>31.07.2027</b> <i>·</i> NOVO CUBELEIRO, CORCUBIÓN <i>·</i> A CORUÑA, GALICIA <i>·</i> AFORO 10.000</span>';
-  track.innerHTML = phrase.repeat(6);
+  var base = '<span class="item">WAVE FEST <i>·</i> <b>31.07.2027</b> <i>·</i> NOVO CUBELEIRO, CORCUBIÓN <i>·</i> AFORO 10.000</span>';
+  function esc(t){ return String(t).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+  // La cinta mezcla los datos del festival con los artistas confirmados (se actualiza con la hoja)
+  window.WAVE_marquee = function(names){
+    var arts = (names || []).filter(Boolean).map(function(n){ return '<span class="item artist">' + esc(String(n).toUpperCase()) + '</span>'; }).join('<span class="item"><i>✦</i></span>');
+    var phrase = base + (arts ? '<span class="item"><i>✦</i></span>' + arts + '<span class="item"><i>✦</i></span>' : '');
+    track.innerHTML = phrase.repeat(arts ? 3 : 6);
+  };
+  window.WAVE_marquee(window.WAVE_DEFAULT_LINEUP ? window.WAVE_DEFAULT_LINEUP.filter(function(it){ return it.confirmed && it.name; }).map(function(it){ return it.name; }) : []);
 })();
 
 // ---------- Nav: fondo más sólido al hacer scroll ----------
@@ -2238,6 +2342,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
   var els = document.querySelectorAll('.reveal');
   if (!('IntersectionObserver' in window) || REDUCE_MOTION){
     els.forEach(function(el){ el.classList.add('in-view'); });
+    window.WAVE_reveal = function(list){ for (var i = 0; i < list.length; i++) list[i].classList.add('in-view'); };
     return;
   }
   var io = new IntersectionObserver(function(entries){
@@ -2249,6 +2354,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
     });
   }, { threshold:0.16, rootMargin:'0px 0px -8% 0px' });
   els.forEach(function(el){ io.observe(el); });
+  window.WAVE_reveal = function(list){ for (var i = 0; i < list.length; i++){ if (!list[i].classList.contains('in-view')) io.observe(list[i]); } };
 })();
 
 // ---------- Contador animado (aforo) ----------
@@ -2426,7 +2532,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
   var t=new Date('2027-07-31T00:00:00+02:00').getTime(),box=document.getElementById('countdown');
   if(box){var el={};box.querySelectorAll('b').forEach(function(b){el[b.dataset.u]=b;});
     function tick(){var d=Math.max(0,t-Date.now()),v={d:Math.floor(d/864e5),h:Math.floor(d%864e5/36e5),m:Math.floor(d%36e5/6e4),s:Math.floor(d%6e4/1e3)};
-      for(var k in v)el[k].textContent=String(v[k]).padStart(k==='d'?3:2,'0');}
+      for(var k in v){var s=String(v[k]).padStart(k==='d'?3:2,'0');if(el[k].textContent!==s){el[k].textContent=s;if(!REDUCE_MOTION){el[k].classList.remove('pop');void el[k].offsetWidth;el[k].classList.add('pop');}}}}
     tick();setInterval(tick,1000);}
   var hero=document.querySelector('.hero');
   if(hero&&!REDUCE_MOTION&&!matchMedia('(hover: none)').matches){
