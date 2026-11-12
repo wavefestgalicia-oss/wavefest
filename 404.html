@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Te has salido de la ola · WAVE FEST Galicia</title>
+<meta name="robots" content="noindex, follow">
+<meta name="theme-color" content="#191919">
+<script>
+/* La página de error se sirve en cualquier dirección: fija la carpeta base de la web (wavefest.es o github.io/wavefest) */
+(function(){ var b = /github\.io$/.test(location.hostname) ? '/wavefest/' : '/'; document.write('<base href="' + b + '">'); window.WF_BASE = b; })();
+</script>
+<link rel="icon" type="image/png" sizes="48x48" href="img/favicon-48.png">
+<link rel="preload" href="fonts/rubik-latin-900-normal.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Rubik';font-style:normal;font-weight:800;font-display:swap;src:url(fonts/rubik-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'Rubik';font-style:normal;font-weight:900;font-display:swap;src:url(fonts/rubik-latin-900-normal.woff2) format('woff2')}
+@font-face{font-family:'Rubik';font-style:italic;font-weight:800;font-display:swap;src:url(fonts/rubik-latin-800-italic.woff2) format('woff2')}
+:root{--ink:#191919;--teal:#0bcbfb;--aqua:#8ffcd4;--orange:#ff9000;--dim:#b4b8ba;--grad:linear-gradient(90deg,#0bcbfb,#8ffcd4)}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--ink);color:#fff;font:16px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.scene{position:relative;overflow:hidden;min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:40px 16px 180px;background:radial-gradient(ellipse 90% 60% at 50% 0%,rgba(11,203,251,.2),transparent 60%),linear-gradient(180deg,#191919 0%,#071720 60%,#04262B 100%)}
+.aur{position:absolute;width:70vmax;height:70vmax;border-radius:50%;pointer-events:none;opacity:.5}
+.a1{left:-30vmax;top:-30vmax;background:radial-gradient(circle,rgba(11,203,251,.3),transparent 62%);animation:m1 18s ease-in-out infinite alternate}
+.a2{right:-30vmax;bottom:-30vmax;background:radial-gradient(circle,rgba(143,252,212,.22),transparent 62%);animation:m2 22s ease-in-out infinite alternate}
+@keyframes m1{to{transform:translate(16vw,12vh)}}@keyframes m2{to{transform:translate(-14vw,-10vh)}}
+.logo{width:72px;height:auto;margin-bottom:22px;position:relative;filter:drop-shadow(0 0 18px rgba(11,203,251,.6))}
+.code{position:relative;font:900 clamp(110px,26vw,260px)/.85 'Rubik',sans-serif;letter-spacing:-.03em;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 30px rgba(11,203,251,.35))}
+h1{position:relative;margin-top:14px;font:900 clamp(28px,5.4vw,52px)/1.05 'Rubik',sans-serif;text-transform:uppercase}
+p{position:relative;max-width:46ch;margin:14px auto 0;color:var(--dim)}
+.gl{font-size:14px;margin-top:6px;opacity:.8}
+.actions{position:relative;display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:30px}
+.btn{display:inline-block;padding:14px 24px;border-radius:999px;font:800 13px 'Rubik',sans-serif;letter-spacing:.08em;text-transform:uppercase;text-decoration:none}
+.btn-p{background:var(--orange);color:#121212;box-shadow:0 10px 34px -10px rgba(255,144,0,.7)}
+.btn-g{border:1px solid rgba(11,203,251,.6);color:#fff}
+.btn:focus-visible{outline:2px solid var(--aqua);outline-offset:3px}
+.sea{position:absolute;left:0;bottom:0;width:200%;height:170px;animation:sea linear infinite}
+.s1{bottom:40px;animation-duration:24s;opacity:.8}.s2{bottom:18px;animation-duration:16s;animation-direction:reverse}.s3{animation-duration:11s}
+@keyframes sea{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.aur,.sea{animation:none}}
+</style>
+</head>
+<body>
+<main class="scene">
+  <span class="aur a1"></span><span class="aur a2"></span>
+  <img class="logo" src="img/logo-w.webp" alt="WAVE FEST" width="120" height="79">
+  <div class="code" aria-hidden="true">404</div>
+  <h1>Te has salido de la ola</h1>
+  <p>Esta página no existe o ha cambiado de sitio. Vuelve a la orilla: el festival sigue el 31 de julio de 2027 en Corcubión.</p>
+  <p class="gl" lang="gl">Saíches da onda: esta páxina non existe.</p>
+  <div class="actions">
+    <a class="btn btn-p" href="./#entradas">Comprar entradas</a>
+    <a class="btn btn-g" href="./#cartel">Ver el cartel</a>
+    <a class="btn btn-g" href="./">Inicio</a>
+  </div>
+  <svg class="sea s1" viewBox="0 0 2880 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0,60 C120,20 240,20 360,60 S600,100 720,60 S960,20 1080,60 S1320,100 1440,60 S1680,20 1800,60 S2040,100 2160,60 S2400,20 2520,60 S2760,100 2880,60 V160 H0 Z" fill="#0bcbfb" fill-opacity=".14"/></svg>
+  <svg class="sea s2" viewBox="0 0 2880 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0,60 C120,20 240,20 360,60 S600,100 720,60 S960,20 1080,60 S1320,100 1440,60 S1680,20 1800,60 S2040,100 2160,60 S2400,20 2520,60 S2760,100 2880,60 V160 H0 Z" fill="#8ffcd4" fill-opacity=".12"/></svg>
+  <svg class="sea s3" viewBox="0 0 2880 160" preserveAspectRatio="none" aria-hidden="true"><path d="M0,60 C120,20 240,20 360,60 S600,100 720,60 S960,20 1080,60 S1320,100 1440,60 S1680,20 1800,60 S2040,100 2160,60 S2400,20 2520,60 S2760,100 2880,60 V160 H0 Z" fill="#04262B"/><path d="M0,60 C120,20 240,20 360,60 S600,100 720,60 S960,20 1080,60 S1320,100 1440,60 S1680,20 1800,60 S2040,100 2160,60 S2400,20 2520,60 S2760,100 2880,60" fill="none" stroke="#8ffcd4" stroke-opacity=".6" stroke-width="2" vector-effect="non-scaling-stroke"/></svg>
+</main>
+<script src="track.js" defer></script>
+</body>
+</html>

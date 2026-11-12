@@ -1445,6 +1445,45 @@ footer{padding-top:0;position:relative;overflow:hidden}
 .fc-social .ic{width:22px;height:22px}
 @media (max-width:900px){.stats-row{grid-template-columns:repeat(2,1fr);gap:12px}.stat{padding:20px 16px 18px}}
 @media (prefers-reduced-motion:reduce){.wave-div svg{animation:none}}
+
+/* ===== Visual 2026-11 (3): FAQ por pestañas, patrocinios, brillo de tarjetas ===== */
+.faq-tabs{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+.faq-tab{display:inline-flex;align-items:center;gap:10px;padding:11px 18px;border-radius:999px;border:1px solid var(--line);background:rgba(255,255,255,.03);color:var(--chrome);font:800 13px var(--font-ui);letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .25s,color .25s,border-color .25s,box-shadow .25s}
+.faq-tab .n{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:999px;background:rgba(11,203,251,.14);color:var(--aqua);font-size:11px;letter-spacing:0}
+.faq-tab:hover{border-color:rgba(11,203,251,.5);color:var(--white)}
+.faq-tab[aria-selected="true"]{background:var(--wave-grad);color:var(--ink);border-color:transparent;box-shadow:0 10px 28px -12px rgba(11,203,251,.8)}
+.faq-tab[aria-selected="true"] .n{background:rgba(18,18,18,.18);color:var(--ink)}
+.faq-tab:focus-visible{outline:2px solid var(--aqua);outline-offset:3px}
+.faq-panel{display:none}
+.faq-panel.active{display:flex;animation:faqIn .45s cubic-bezier(.2,.8,.2,1)}
+@keyframes faqIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.faq-a{overflow:hidden}
+.faq-item summary::after{transition:transform .3s cubic-bezier(.2,.8,.2,1)}
+.brand-slot{position:relative;margin-top:44px;display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(22px,4vw,48px);padding:clamp(26px,4vw,48px);border-radius:26px;border:1px solid rgba(11,203,251,.35);background:radial-gradient(90% 120% at 0% 0%,rgba(11,203,251,.16),transparent 55%),radial-gradient(70% 90% at 100% 100%,rgba(143,252,212,.10),transparent 60%),rgba(255,255,255,.02);overflow:hidden}
+.brand-slot::before{content:"";position:absolute;inset:auto -10% -40% auto;width:60%;aspect-ratio:1;border-radius:50%;border:1px dashed rgba(143,252,212,.18);pointer-events:none}
+.bs-kicker{display:inline-block;padding:6px 12px;border-radius:999px;background:var(--wave-grad);color:var(--ink);font:800 11px var(--font-ui);letter-spacing:.14em;text-transform:uppercase;margin-bottom:16px}
+.brand-slot h3{font:900 clamp(28px,3.6vw,44px)/1.02 var(--font-display);text-transform:uppercase;color:var(--white);margin-bottom:14px}
+.brand-slot p{color:var(--chrome-dim);font-size:15px;line-height:1.6;max-width:52ch;margin-bottom:18px}
+.bs-perks{list-style:none;padding:0;margin:0 0 26px;display:grid;grid-template-columns:1fr 1fr;gap:8px 18px}
+.bs-perks li{position:relative;padding-left:18px;font-size:14px;color:var(--white)}
+.bs-perks li::before{content:"";position:absolute;left:0;top:.5em;width:8px;height:8px;border-radius:50%;background:var(--wave-grad)}
+.bs-stats{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-content:center}
+.bs-stats div{padding:20px 18px;border-radius:18px;border:1px solid var(--line);background:rgba(18,18,18,.55)}
+.bs-stats b{display:block;font:900 clamp(30px,3.4vw,44px)/1 var(--font-display);background:var(--wave-grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.bs-stats span{display:block;margin-top:8px;font:700 11.5px var(--font-ui);letter-spacing:.1em;text-transform:uppercase;color:var(--chrome)}
+.sponsor-band{overflow:hidden;margin:34px 0 10px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.sb-track{display:flex;gap:56px;width:max-content;animation:sbMove 30s linear infinite}
+.sb-item img{height:46px;width:auto;opacity:.85;filter:grayscale(1) brightness(1.6)}
+.sb-item img:hover{filter:none;opacity:1}
+@keyframes sbMove{to{transform:translateX(-33.333%)}}
+.glow{position:relative}
+.glow::after{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;background:radial-gradient(240px circle at var(--gx,50%) var(--gy,50%),rgba(143,252,212,.95),rgba(11,203,251,.5) 35%,transparent 70%);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0);opacity:0;transition:opacity .35s ease;z-index:3}
+.glow:hover::after{opacity:1}
+.glow::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(320px circle at var(--gx,50%) var(--gy,50%),rgba(11,203,251,.08),transparent 65%);opacity:0;transition:opacity .35s ease}
+.glow:hover::before{opacity:1}
+@media (max-width:900px){.brand-slot{grid-template-columns:1fr}.bs-perks{grid-template-columns:1fr}}
+@media (max-width:600px){.faq-tab{padding:10px 14px;font-size:12px}}
+@media (prefers-reduced-motion:reduce){.sb-track,.faq-panel.active{animation:none}}
 </style>
 </head>
 <body>
@@ -1792,12 +1831,25 @@ footer{padding-top:0;position:relative;overflow:hidden}
 
       <div id="sponsors-mount"></div>
 
-      <div class="sponsor-cta reveal">
-        <div>
-          <h3>¿Quieres patrocinar WAVE FEST?</h3>
-          <p>Quedan espacios disponibles en todas las categorías. Escríbenos y te enviamos el dossier con audiencia, visibilidad y tarifas.</p>
+      <div class="brand-slot reveal">
+        <div class="bs-main">
+          <span class="bs-kicker">Tu marca aquí</span>
+          <h3>Súbete a la ola con nosotros</h3>
+          <p>Quedan espacios disponibles en todas las categorías: patrocinador principal, patrocinadores y colaboradores. Escríbenos y te enviamos el dossier con audiencia, visibilidad y tarifas.</p>
+          <ul class="bs-perks">
+            <li>Naming y presencia en cartelería</li>
+            <li>Barra, stand o photocall de marca</li>
+            <li>Campaña en redes y web</li>
+            <li>Entradas VIP para tus invitados</li>
+          </ul>
+          <a class="btn btn-primary" href="#contacto" data-track="patrocinio-dossier">Solicitar dossier</a>
         </div>
-        <a class="btn btn-primary" href="#contacto">Solicitar dossier</a>
+        <div class="bs-stats">
+          <div><b>10.000</b><span>personas de aforo</span></div>
+          <div><b>16–35</b><span>años, el público del festival</span></div>
+          <div><b>11 h</b><span>de música en directo</span></div>
+          <div><b>1ª</b><span>edición en la Costa da Morte</span></div>
+        </div>
       </div>
     </div>
   </section>
@@ -1852,58 +1904,93 @@ footer{padding-top:0;position:relative;overflow:hidden}
         <h2>Preguntas frecuentes</h2>
         <p>Todo lo que necesitas saber antes de venir. ¿No encuentras tu respuesta? Escríbenos.</p>
       </div>
-      <div class="faq-list">
+      <div class="faq-tabs" role="tablist" aria-label="Categorías de preguntas">
+        <button type="button" role="tab" class="faq-tab" id="faqtab-acceso" aria-controls="faqpanel-acceso" aria-selected="true">Acceso<span class="n">7</span></button>
+        <button type="button" role="tab" class="faq-tab" id="faqtab-entradas" aria-controls="faqpanel-entradas" aria-selected="false" tabindex="-1">Entradas<span class="n">3</span></button>
+        <button type="button" role="tab" class="faq-tab" id="faqtab-festival" aria-controls="faqpanel-festival" aria-selected="false" tabindex="-1">En el festival<span class="n">3</span></button>
+      </div>
+      <div class="faq-list faq-panel active" role="tabpanel" id="faqpanel-acceso" aria-labelledby="faqtab-acceso">
         <details class="faq-item">
           <summary>¿Cuándo y dónde es WAVE FEST?</summary>
+          <div class="faq-a">
           <p>El sábado 31 de julio de 2027 en el Campo de fútbol Novo Cubeleiro, en Corcubión (A Coruña), en plena Costa da Morte.</p>
+          </div>
         </details>
         <details class="faq-item">
           <summary>¿A qué hora empieza y termina?</summary>
+          <div class="faq-a">
           <p>Las puertas abren a las 19:00 y el festival termina sobre las 06:00. Los horarios de cada artista se publicarán más adelante.</p>
+          </div>
         </details>
         <details class="faq-item">
           <summary>¿Cuál es la edad mínima?</summary>
+          <div class="faq-a">
           <p>16 años. Los asistentes de 16 y 17 años deben traer la <a href="autorizacion-menores.html" target="_blank">autorización firmada</a> por su padre, madre o tutor legal, llevarán una pulsera identificativa y no se les servirá alcohol. La zona VIP es solo para mayores de 18.</p>
+          </div>
         </details>
         <details class="faq-item">
           <summary>¿Qué documento tengo que llevar?</summary>
+          <div class="faq-a">
           <p>El DNI, el pasaporte o el carné de conducir original. Las entradas son nominativas: el nombre de la entrada tiene que coincidir con el del documento. Sin documento no se puede entrar.</p>
-        </details>
-        <details class="faq-item">
-          <summary>¿Qué tipos de entrada hay?</summary>
-          <p>General (acceso al recinto), Front Stage (zona delantera, pegada al escenario) y VIP (zona exclusiva con barra propia, para grupos de hasta 4 personas). Los precios suben por tramos: cuanto antes compres, mejor precio.</p>
-        </details>
-        <details class="faq-item">
-          <summary>¿Puedo cambiar el nombre de mi entrada?</summary>
-          <p>Sí. El cambio de titular cuesta 15 € y se hace a través de Futura Tickets. No compres entradas fuera de los canales oficiales: las copias o duplicados serán rechazados.</p>
+          </div>
         </details>
         <details class="faq-item">
           <summary>¿Puedo salir y volver a entrar?</summary>
+          <div class="faq-a">
           <p>Sí, con la pulsera de reacceso, que cuesta 5 € y se consigue al salir en los puntos de control.</p>
+          </div>
         </details>
         <details class="faq-item">
           <summary>¿Qué no puedo llevar?</summary>
+          <div class="faq-a">
           <p>Comida y bebida del exterior, envases de vidrio, latas, objetos punzantes, bengalas, pirotecnia, punteros láser, drones o cualquier objeto peligroso. Habrá controles en el acceso.</p>
-        </details>
-        <details class="faq-item">
-          <summary>¿Se puede pagar con tarjeta dentro?</summary>
-          <p>Sí. Casi todas las barras aceptan tarjeta y habrá también un punto que solo acepta efectivo.</p>
-        </details>
-        <details class="faq-item">
-          <summary>¿Habrá comida dentro?</summary>
-          <p>Sí, habrá zona de comida con food trucks durante todo el festival.</p>
-        </details>
-        <details class="faq-item">
-          <summary>¿Qué pasa si llueve?</summary>
-          <p>El festival es al aire libre y se celebra aunque llueva. Solo se suspendería si las condiciones pusieran en riesgo la seguridad del público; en ese caso avisaríamos en nuestros canales oficiales.</p>
-        </details>
-        <details class="faq-item">
-          <summary>¿Me devuelven el dinero si no puedo ir?</summary>
-          <p>Las entradas no se devuelven salvo que el festival se cancele o se aplace. Puedes hacer un cambio de titular para que vaya otra persona. Tienes todas las condiciones en <a href="legal.html#cancelaciones">Cancelación y devoluciones</a>.</p>
+          </div>
         </details>
         <details class="faq-item">
           <summary>¿Es accesible para personas con movilidad reducida?</summary>
+          <div class="faq-a">
           <p>Sí. Habrá itinerarios y aseos adaptados. Si necesitas asistencia, escríbenos antes del festival a <a href="mailto:hola@wavefest.es">hola@wavefest.es</a>.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-list faq-panel" role="tabpanel" id="faqpanel-entradas" aria-labelledby="faqtab-entradas">
+        <details class="faq-item">
+          <summary>¿Qué tipos de entrada hay?</summary>
+          <div class="faq-a">
+          <p>General (acceso al recinto), Front Stage (zona delantera, pegada al escenario) y VIP (zona exclusiva con barra propia, para grupos de hasta 4 personas). Los precios suben por tramos: cuanto antes compres, mejor precio.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Puedo cambiar el nombre de mi entrada?</summary>
+          <div class="faq-a">
+          <p>Sí. El cambio de titular cuesta 15 € y se hace a través de Futura Tickets. No compres entradas fuera de los canales oficiales: las copias o duplicados serán rechazados.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Me devuelven el dinero si no puedo ir?</summary>
+          <div class="faq-a">
+          <p>Las entradas no se devuelven salvo que el festival se cancele o se aplace. Puedes hacer un cambio de titular para que vaya otra persona. Tienes todas las condiciones en <a href="legal.html#cancelaciones">Cancelación y devoluciones</a>.</p>
+          </div>
+        </details>
+      </div>
+      <div class="faq-list faq-panel" role="tabpanel" id="faqpanel-festival" aria-labelledby="faqtab-festival">
+        <details class="faq-item">
+          <summary>¿Se puede pagar con tarjeta dentro?</summary>
+          <div class="faq-a">
+          <p>Sí. Casi todas las barras aceptan tarjeta y habrá también un punto que solo acepta efectivo.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Habrá comida dentro?</summary>
+          <div class="faq-a">
+          <p>Sí, habrá zona de comida con food trucks durante todo el festival.</p>
+          </div>
+        </details>
+        <details class="faq-item">
+          <summary>¿Qué pasa si llueve?</summary>
+          <div class="faq-a">
+          <p>El festival es al aire libre y se celebra aunque llueva. Solo se suspendería si las condiciones pusieran en riesgo la seguridad del público; en ese caso avisaríamos en nuestros canales oficiales.</p>
+          </div>
         </details>
       </div>
     </div>
@@ -2252,6 +2339,55 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
   }, { threshold:.6 });
   els.forEach(function(el){ io.observe(el); });
 })();
+// ---------- Preguntas frecuentes: pestañas y apertura animada ----------
+(function(){
+  var tabs = [].slice.call(document.querySelectorAll('.faq-tab'));
+  function select(t, focus){
+    tabs.forEach(function(x){
+      var on = x === t, p = document.getElementById(x.getAttribute('aria-controls'));
+      x.setAttribute('aria-selected', on ? 'true' : 'false'); x.tabIndex = on ? 0 : -1;
+      if (p) p.classList.toggle('active', on);
+    });
+    if (focus) t.focus();
+  }
+  tabs.forEach(function(t, i){
+    t.addEventListener('click', function(){ select(t); });
+    t.addEventListener('keydown', function(e){
+      var d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d){ e.preventDefault(); select(tabs[(i + d + tabs.length) % tabs.length], true); }
+    });
+  });
+  document.querySelectorAll('.faq-item').forEach(function(d){
+    var sum = d.querySelector('summary'), body = d.querySelector('.faq-a');
+    if (!sum || !body || REDUCE_MOTION || !body.animate) return;
+    sum.addEventListener('click', function(e){
+      e.preventDefault();
+      if (d.dataset.anim) return;
+      d.dataset.anim = '1';
+      if (!d.open){
+        d.open = true;
+        var h = body.scrollHeight;
+        body.animate([{ height:'0px', opacity:0 }, { height:h + 'px', opacity:1 }], { duration:320, easing:'cubic-bezier(.2,.8,.2,1)' }).onfinish = function(){ delete d.dataset.anim; };
+      } else {
+        var h2 = body.scrollHeight;
+        body.animate([{ height:h2 + 'px', opacity:1 }, { height:'0px', opacity:0 }], { duration:240, easing:'ease-in' }).onfinish = function(){ d.open = false; delete d.dataset.anim; };
+      }
+    });
+  });
+})();
+// ---------- Tarjetas: el borde brilla siguiendo el ratón (solo ordenador) ----------
+(function(){
+  if (REDUCE_MOTION || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  var sel = '.ticket-card, .travel-card, .stat, .faq-item';
+  document.querySelectorAll(sel).forEach(function(el){ el.classList.add('glow'); });
+  document.addEventListener('pointermove', function(e){
+    var el = e.target.closest && e.target.closest('.glow');
+    if (!el) return;
+    var r = el.getBoundingClientRect();
+    el.style.setProperty('--gx', (e.clientX - r.left) + 'px');
+    el.style.setProperty('--gy', (e.clientY - r.top) + 'px');
+  }, { passive:true });
+})();
 // ---------- VIP: precio por persona ----------
 (function(){
   var out = document.getElementById('vipPerPerson'), card = out && out.closest('.ticket-card'), price = card && card.querySelector('.price');
@@ -2340,6 +2476,12 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
       });
       html += '</div></div>';
     });
+    var all = [];
+    list.forEach(function(t){ (t.items || []).forEach(function(sp){ if (sp && sp.logo) all.push(sp); }); });
+    if (all.length >= 4){
+      var row = all.map(function(sp){ return '<span class="sb-item"><img src="' + esc(sp.logo) + '" alt="' + esc(sp.name) + '" loading="lazy"></span>'; }).join('');
+      html = '<div class="sponsor-band" aria-hidden="true"><div class="sb-track">' + row + row + row + '</div></div>' + html;
+    }
     mount.innerHTML = html;
   }
   build(tiers);
