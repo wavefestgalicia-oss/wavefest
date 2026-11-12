@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stories de artistas · WAVE FEST</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#191919">
+<link rel="icon" type="image/png" sizes="48x48" href="../img/favicon-48.png">
+<style>
+@font-face{font-family:'Rubik';font-style:normal;font-weight:800;font-display:swap;src:url(../fonts/rubik-latin-800-normal.woff2) format('woff2')}
+@font-face{font-family:'Rubik';font-style:normal;font-weight:900;font-display:swap;src:url(../fonts/rubik-latin-900-normal.woff2) format('woff2')}
+:root{--ink:#191919;--teal:#0bcbfb;--aqua:#8ffcd4;--orange:#ff9000;--dim:#b4b8ba;--grad:linear-gradient(90deg,#0bcbfb,#8ffcd4)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--ink);color:#fff;font:15px/1.6 'Helvetica Neue',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;padding:28px 16px 60px}
+.wrap{max-width:1180px;margin:0 auto}
+h1{font:900 clamp(30px,5vw,48px)/1.05 'Rubik',sans-serif;text-transform:uppercase;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;margin-bottom:10px}
+.intro{color:var(--dim);max-width:70ch;margin-bottom:18px}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-bottom:22px}
+button,.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 18px;border-radius:999px;border:0;background:var(--orange);color:#121212;font:800 13px 'Rubik',sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.ghost{background:none;color:#fff;border:1px solid rgba(11,203,251,.6)}
+.status{color:var(--aqua);font-weight:700}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:18px}
+.item{display:flex;flex-direction:column;gap:10px}
+.item canvas{width:100%;height:auto;border-radius:16px;border:1px solid rgba(255,255,255,.12);background:#000}
+.item .row{display:flex;gap:8px;align-items:center;justify-content:space-between}
+.item b{font:800 14px 'Rubik',sans-serif;text-transform:uppercase}
+.item button{padding:9px 14px;font-size:12px}
+.note{margin-top:26px;font-size:13px;color:var(--dim)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Stories de artistas</h1>
+  <p class="intro">Se crean solas con los artistas que estén como <b>confirmado</b> en la hoja de Google (pestaña «cartel»). Si la hoja trae foto, se usa; si no, sale el nombre en grande. Formato 1080×1920, listo para Instagram.</p>
+  <div class="bar">
+    <button type="button" id="all">Descargar todas</button>
+    <button type="button" class="ghost" id="reload">Volver a cargar la hoja</button>
+    <span class="status" id="st">Cargando…</span>
+  </div>
+  <div class="grid" id="grid"></div>
+  <p class="note">Esta página no aparece en Google ni está enlazada en la web. Guárdala en favoritos para volver a ella.</p>
+</div>
+<script>
+(function(){
+  'use strict';
+  var LINEUP_CSV = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdODD2SlTcJr78gKTbij1H4oN48Dhrkqtb7faC75i_O6GuuIao2Pl82JunSTTJzq9-mnCD03XGmVN6/pub?gid=935534751&single=true&output=csv';
+  var FOTOS = { 'collazo': '../img/artista-collazo.webp', '9collazo9': '../img/artista-collazo.webp', 'jesus gamez dj': '../img/artista-jesus-gamez.webp', 'jesus gamez': '../img/artista-jesus-gamez.webp', 'diego maquieira': '../img/artista-diego-maquieira.webp' };
+  var DEFAULT = [['Dirty Suc', ''], ['Collazo', ''], ['Jesús Gámez DJ', ''], ['Borja Solla DJ', ''], ['Diego Maquieira', '']];
+  var W = 1080, H = 1920, grid = document.getElementById('grid'), st = document.getElementById('st'), made = [];
+
+  function norm(s){ return String(s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').trim(); }
+  function parseCSV(t){
+    var rows = [], row = [], f = '', q = false;
+    for (var i = 0; i < t.length; i++){ var c = t[i];
+      if (q){ if (c === '"'){ if (t[i + 1] === '"'){ f += '"'; i++; } else q = false; } else f += c; }
+      else if (c === '"') q = true; else if (c === ','){ row.push(f); f = ''; }
+      else if (c === '\n' || c === '\r'){ if (c === '\r' && t[i + 1] === '\n') i++; row.push(f); rows.push(row); row = []; f = ''; }
+      else f += c; }
+    if (f || row.length){ row.push(f); rows.push(row); }
+    var h = (rows.shift() || []).map(norm);
+    return rows.map(function(r){ var o = {}; h.forEach(function(k, i){ o[k] = (r[i] || '').trim(); }); return o; });
+  }
+  function photo(name, u){
+    u = String(u || '').trim();
+    var m = u.match(/drive\.google\.com\/(?:file\/d\/|open\?id=|uc\?(?:export=\w+&)?id=)([\w-]+)/);
+    if (m) return 'https://lh3.googleusercontent.com/d/' + m[1] + '=w1200';
+    if (/^https?:\/\//.test(u)) return u;
+    if (/^img\//.test(u)) return '../' + u;
+    return FOTOS[norm(name)] || '';
+  }
+  function loadImg(src){
+    return new Promise(function(res){
+      if (!src) return res(null);
+      var i = new Image(); i.crossOrigin = 'anonymous';
+      i.onload = function(){ res(i); }; i.onerror = function(){ res(null); }; i.src = src;
+    });
+  }
+  function wave(ctx, y, amp, len, ph){ ctx.moveTo(0, y); for (var x = 0; x <= W; x += 8) ctx.lineTo(x, y + Math.sin(x / len * Math.PI * 2 + ph) * amp); }
+  function rr(ctx, x, y, w, h, r){ ctx.beginPath(); ctx.moveTo(x + r, y); ctx.arcTo(x + w, y, x + w, y + h, r); ctx.arcTo(x + w, y + h, x, y + h, r); ctx.arcTo(x, y + h, x, y, r); ctx.arcTo(x, y, x + w, y, r); ctx.closePath(); }
+  function fit(ctx, text, maxW, start, min){ var s = start; do { ctx.font = '900 ' + s + 'px Rubik'; s -= 4; } while (ctx.measureText(text).width > maxW && s > min); return s + 4; }
+  function grad(ctx, x0, x1){ var g = ctx.createLinearGradient(x0, 0, x1, 0); g.addColorStop(0, '#0bcbfb'); g.addColorStop(1, '#8ffcd4'); return g; }
+
+  function base(ctx, logo){
+    var g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, '#191919'); g.addColorStop(.55, '#071720'); g.addColorStop(1, '#04262B');
+    ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+    [[150, 120, 760, 'rgba(11,203,251,.32)'], [980, 700, 700, 'rgba(143,252,212,.18)'], [500, 1900, 800, 'rgba(11,120,251,.22)']].forEach(function(a){
+      var r = ctx.createRadialGradient(a[0], a[1], 0, a[0], a[1], a[2]); r.addColorStop(0, a[3]); r.addColorStop(1, 'rgba(0,0,0,0)'); ctx.fillStyle = r; ctx.fillRect(0, 0, W, H); });
+    [[1700, 26, 700, 0, 'rgba(11,203,251,.16)'], [1740, 22, 560, 2, 'rgba(143,252,212,.14)'], [1790, 20, 820, 4, '#04262B']].forEach(function(o){
+      ctx.beginPath(); wave(ctx, o[0], o[1], o[2], o[3]); ctx.lineTo(W, H); ctx.lineTo(0, H); ctx.closePath(); ctx.fillStyle = o[4]; ctx.fill(); });
+    ctx.beginPath(); wave(ctx, 1790, 20, 820, 4); ctx.strokeStyle = grad(ctx, 0, W); ctx.lineWidth = 4; ctx.shadowColor = 'rgba(11,203,251,.9)'; ctx.shadowBlur = 22; ctx.stroke(); ctx.shadowBlur = 0;
+    var lh = 70, lw = logo.naturalWidth * lh / logo.naturalHeight;
+    ctx.shadowColor = 'rgba(11,203,251,.7)'; ctx.shadowBlur = 24; ctx.drawImage(logo, 80, 90, lw, lh); ctx.shadowBlur = 0;
+    ctx.fillStyle = '#fff'; ctx.font = '800 36px Rubik'; ctx.textBaseline = 'middle'; ctx.fillText('WAVE FEST', 80 + lw + 20, 90 + lh / 2);
+    ctx.textAlign = 'right'; ctx.fillStyle = '#8ffcd4'; ctx.font = '800 28px Rubik'; ctx.fillText('GALICIA 2027', W - 80, 90 + lh / 2); ctx.textAlign = 'left';
+  }
+  function footer(ctx){
+    ctx.textBaseline = 'middle'; ctx.textAlign = 'center';
+    ctx.fillStyle = '#ffffff'; ctx.font = '800 34px Rubik'; ctx.fillText('31.07.2027 · CORCUBIÓN · COSTA DA MORTE', W / 2, 1495);
+    ctx.font = '800 34px Rubik'; var t = 'ENTRADAS EN WAVEFEST.ES', tw = ctx.measureText(t).width + 90;
+    ctx.fillStyle = '#ff9000'; ctx.shadowColor = 'rgba(255,144,0,.6)'; ctx.shadowBlur = 30; rr(ctx, (W - tw) / 2, 1545, tw, 84, 42); ctx.fill(); ctx.shadowBlur = 0;
+    ctx.fillStyle = '#121212'; ctx.fillText(t, W / 2, 1588); ctx.textAlign = 'left';
+  }
+  function artistStory(name, img, logo, n){
+    var c = document.createElement('canvas'); c.width = W; c.height = H; var ctx = c.getContext('2d');
+    base(ctx, logo);
+    // pastilla
+    ctx.font = '800 30px Rubik'; var p = 'CONFIRMADO', pw = ctx.measureText(p).width + 70;
+    ctx.fillStyle = grad(ctx, (W - pw) / 2, (W + pw) / 2); rr(ctx, (W - pw) / 2, 215, pw, 64, 32); ctx.fill();
+    ctx.fillStyle = '#121212'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(p, W / 2, 248); ctx.textAlign = 'left';
+    // tarjeta de foto
+    var x = 130, y = 315, w = 820, h = 800;
+    ctx.save(); ctx.shadowColor = 'rgba(11,203,251,.65)'; ctx.shadowBlur = 60; rr(ctx, x, y, w, h, 46); ctx.fillStyle = '#0d2f39'; ctx.fill(); ctx.restore();
+    ctx.save(); rr(ctx, x, y, w, h, 46); ctx.clip();
+    if (img){
+      var s = Math.max(w / img.naturalWidth, h / img.naturalHeight), iw = img.naturalWidth * s, ih = img.naturalHeight * s;
+      ctx.drawImage(img, x + (w - iw) / 2, y + Math.min(0, (h - ih) * 0.22), iw, ih);
+      var gg = ctx.createLinearGradient(0, y + h * .55, 0, y + h); gg.addColorStop(0, 'rgba(18,18,18,0)'); gg.addColorStop(1, 'rgba(18,18,18,.85)'); ctx.fillStyle = gg; ctx.fillRect(x, y, w, h);
+    } else {
+      var bg = ctx.createLinearGradient(x, y, x + w, y + h); bg.addColorStop(0, '#0c3d4a'); bg.addColorStop(1, '#121212'); ctx.fillStyle = bg; ctx.fillRect(x, y, w, h);
+      var ini = name.split(/\s+/).slice(0, 2).map(function(s){ return s.charAt(0); }).join('').toUpperCase();
+      ctx.font = '900 420px Rubik'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.lineWidth = 4; ctx.strokeStyle = 'rgba(143,252,212,.55)'; ctx.strokeText(ini, W / 2, y + h / 2 - 20); ctx.textAlign = 'left';
+    }
+    ctx.restore();
+    ctx.lineWidth = 4; ctx.strokeStyle = grad(ctx, x, x + w); rr(ctx, x, y, w, h, 46); ctx.stroke();
+    // número
+    ctx.font = '900 40px Rubik'; ctx.fillStyle = '#8ffcd4'; ctx.textBaseline = 'top'; ctx.fillText(String(n).padStart(2, '0'), x + 36, y + 32);
+    // nombre
+    var up = name.toUpperCase(), size = fit(ctx, up, 960, 150, 60), lines = [up];
+    if (size < 90 && up.indexOf(' ') > 0){ var words = up.split(' '), half = Math.ceil(words.length / 2); lines = [words.slice(0, half).join(' '), words.slice(half).join(' ')]; size = Math.min(fit(ctx, lines[0], 960, 140, 60), fit(ctx, lines[1], 960, 140, 60)); }
+    ctx.font = '900 ' + size + 'px Rubik'; ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+    ctx.shadowColor = 'rgba(11,203,251,.55)'; ctx.shadowBlur = 40; ctx.fillStyle = grad(ctx, 60, W - 60);
+    var y0 = 1150 + size * .9;
+    lines.forEach(function(l, i){ ctx.fillText(l, W / 2, y0 + i * size * 0.98); }); ctx.shadowBlur = 0; ctx.textAlign = 'left';
+    footer(ctx);
+    return c;
+  }
+  function lineupStory(names, pend, logo){
+    var c = document.createElement('canvas'); c.width = W; c.height = H; var ctx = c.getContext('2d');
+    base(ctx, logo);
+    ctx.textAlign = 'center'; ctx.textBaseline = 'alphabetic';
+    ctx.font = '900 190px Rubik'; ctx.shadowColor = 'rgba(11,203,251,.55)'; ctx.shadowBlur = 40; ctx.fillStyle = grad(ctx, 140, W - 140); ctx.fillText('CARTEL', W / 2, 420); ctx.shadowBlur = 0;
+    ctx.font = '800 34px Rubik'; ctx.fillStyle = '#8ffcd4'; ctx.fillText('ARTISTAS CONFIRMADOS', W / 2, 490);
+    var list = names.slice(), area = 1400 - 580, step = Math.min(150, area / Math.max(1, list.length + (pend > 0 ? 1 : 0)));
+    list.forEach(function(nm, i){ var up = nm.toUpperCase(), s = fit(ctx, up, 920, Math.min(110, step * .78), 40); ctx.font = '900 ' + s + 'px Rubik'; ctx.fillStyle = '#ffffff'; ctx.fillText(up, W / 2, 600 + step * (i + .7)); });
+    if (pend > 0){ ctx.font = '900 ' + Math.min(90, step * .7) + 'px Rubik'; ctx.fillStyle = grad(ctx, 300, W - 300); ctx.fillText('+' + pend + ' POR ANUNCIAR', W / 2, 600 + step * (list.length + .7)); }
+    ctx.textAlign = 'left';
+    footer(ctx);
+    return c;
+  }
+  function slug(s){ return norm(s).replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, ''); }
+  function add(c, label, file){
+    var d = document.createElement('div'); d.className = 'item';
+    var row = document.createElement('div'); row.className = 'row';
+    var b = document.createElement('b'); b.textContent = label;
+    var btn = document.createElement('button'); btn.type = 'button'; btn.textContent = 'Descargar';
+    btn.onclick = function(){ download(c, file); };
+    row.appendChild(b); row.appendChild(btn); d.appendChild(c); d.appendChild(row); grid.appendChild(d);
+    made.push([c, file]);
+  }
+  function download(c, file){
+    try {
+      c.toBlob(function(blob){ var a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = file; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 1500); }, 'image/png');
+    } catch (e){ st.textContent = 'No se pudo descargar esta imagen (la foto de la hoja no permite guardarla).'; }
+  }
+  document.getElementById('all').onclick = function(){ made.forEach(function(m, i){ setTimeout(function(){ download(m[0], m[1]); }, i * 700); }); };
+  document.getElementById('reload').onclick = function(){ run(); };
+
+  var fontsReady = Promise.all(['800', '900'].map(function(w){ return document.fonts.load(w + ' 40px Rubik'); }));
+  var logoP = loadImg('../img/logo-w.webp');
+  function run(){
+    st.textContent = 'Cargando…'; grid.innerHTML = ''; made = [];
+    fetch(LINEUP_CSV, { cache: 'no-store' }).then(function(r){ if (!r.ok) throw 0; return r.text(); }).then(parseCSV).then(function(rows){
+      rows = rows.filter(function(o){ return o.nombre || o.estado; });
+      var ok = rows.filter(function(o){ return norm(o.estado).indexOf('confirm') === 0 && o.nombre; });
+      return { list: ok.map(function(o){ return [o.nombre, photo(o.nombre, o.foto)]; }), pend: rows.length - ok.length };
+    }).catch(function(){ return { list: DEFAULT.map(function(a){ return [a[0], photo(a[0], a[1])]; }), pend: 7, fallback: true }; })
+    .then(function(data){
+      return Promise.all([fontsReady, logoP]).then(function(r){
+        var logo = r[1];
+        return Promise.all(data.list.map(function(a){ return loadImg(a[1]); })).then(function(imgs){
+          data.list.forEach(function(a, i){
+            var c = artistStory(a[0], imgs[i], logo, i + 1);
+            try { c.toDataURL(); } catch (e){ c = artistStory(a[0], null, logo, i + 1); }
+            add(c, a[0], 'wavefest-story-' + slug(a[0]) + '.png');
+          });
+          add(lineupStory(data.list.map(function(a){ return a[0]; }), data.pend, logo), 'Cartel', 'wavefest-story-cartel.png');
+          st.textContent = (data.fallback ? 'No se pudo leer la hoja; se usa el cartel guardado. ' : '') + data.list.length + ' artistas confirmados · ' + made.length + ' stories';
+        });
+      });
+    });
+  }
+  run();
+})();
+</script>
+</body>
+</html>

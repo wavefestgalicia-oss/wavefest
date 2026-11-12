@@ -136,4 +136,18 @@
     <xhtml:link rel="alternate" hreflang="gl" href="https://wavefest.es/gl/prensa/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://wavefest.es/prensa/"/>
   </url>
+  <url>
+    <loc>https://wavefest.es/trabaja-con-nosotros/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://wavefest.es/trabaja-con-nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://wavefest.es/gl/traballa-connosco/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wavefest.es/trabaja-con-nosotros/"/>
+  </url>
+  <url>
+    <loc>https://wavefest.es/gl/traballa-connosco/</loc>
+    <lastmod>2026-11-12</lastmod>
+    <xhtml:link rel="alternate" hreflang="es" href="https://wavefest.es/trabaja-con-nosotros/"/>
+    <xhtml:link rel="alternate" hreflang="gl" href="https://wavefest.es/gl/traballa-connosco/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://wavefest.es/trabaja-con-nosotros/"/>
+  </url>
 </urlset>

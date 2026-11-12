@@ -113,6 +113,7 @@
     'Incluido para 4 personas': ['Incluído para 4 persoas', 'For up to 4 people'],
     'Acceso a la zona general': ['Acceso á zona xeral', 'General area access'],
     'Todo el cartel': ['Todo o cartel', 'The full line-up'],
+    'Trabaja con nosotros': ['Traballa connosco', 'Work with us'],
     'Acceso': ['Acceso', 'Getting in'],
     'En el festival': ['No festival', 'At the festival'],
     'Tu marca aquí': ['A túa marca aquí', 'Your brand here'],
