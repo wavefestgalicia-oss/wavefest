@@ -164,9 +164,9 @@
     'Preguntar por accesos': ['Preguntar polos accesos', 'Ask about access'],
     'Océano Atlántico': ['Océano Atlántico', 'Atlantic Ocean'],
     'Cómo llegar a WAVE FEST': ['Como chegar ao WAVE FEST', 'How to get to WAVE FEST'],
-    'Esquema de situación: Corcubión, en la Costa da Morte, a unos 90 km de Santiago de Compostela y de A Coruña.':
-      ['Esquema de situación: Corcubión, na Costa da Morte, a uns 90 km de Santiago de Compostela e da Coruña.',
-       'Location sketch: Corcubión, on the Costa da Morte, about 90 km from Santiago de Compostela and A Coruña.'],
+    'Esquema de situación: Corcubión, en la Costa da Morte, a unos 90 km de Santiago de Compostela, 100 km de A Coruña y 170 km de Vigo.':
+      ['Esquema de situación: Corcubión, na Costa da Morte, a uns 90 km de Santiago de Compostela, 100 km da Coruña e 170 km de Vigo.',
+       'Location sketch: Corcubión, on the Costa da Morte, about 90 km from Santiago de Compostela, 100 km from A Coruña and 170 km from Vigo.'],
     'En coche': ['En coche', 'By car'],
     'Coche y aparcamiento': ['Coche e aparcadoiro', 'Car and parking'],
     'Desde Santiago son unos 90 km y desde A Coruña unos 100 km, siempre en dirección a Cee. Antes del festival publicaremos aquí las zonas de aparcamiento habilitadas. Compartir coche ahorra plazas y gasolina.':

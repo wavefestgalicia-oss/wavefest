@@ -1514,6 +1514,19 @@ footer{padding-top:0;position:relative;overflow:hidden}
 /* ===== Estela del cursor ===== */
 .hero-trail{position:absolute;left:0;top:0;z-index:1;pointer-events:none}
 @media (prefers-reduced-motion:reduce){[data-tod="night"] .hero-tod::before{animation:none}}
+
+/* ===== Mapa: rutas animadas ===== */
+.route-map .mp-draw{fill:none;stroke:#fff;stroke-width:10;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:1}
+.route-map.go .mp-draw{animation:mpDraw 1.7s cubic-bezier(.5,0,.3,1) forwards}
+#mkR2 .mp-draw{animation-delay:.35s!important}#mkR3 .mp-draw{animation-delay:.7s!important}
+.route-map.still .mp-draw{animation:none;stroke-dashoffset:0}
+@keyframes mpDraw{to{stroke-dashoffset:0}}
+.route-map .mp-km{opacity:0;transition:opacity .6s ease}
+.route-map.go .mp-km{opacity:1}.route-map.go .k1{transition-delay:1.3s}.route-map.go .k2{transition-delay:1.7s}.route-map.go .k3{transition-delay:2.1s}
+.route-map .mp-cars{opacity:0;transition:opacity .6s}
+.route-map.cars .mp-cars{opacity:1}
+.route-map .mp-cars circle{filter:drop-shadow(0 0 6px #0bcbfb)}
+@media (prefers-reduced-motion:reduce){.route-map .mp-cars{display:none}}
 </style>
 </head>
 <body>
@@ -1809,19 +1822,29 @@ footer{padding-top:0;position:relative;overflow:hidden}
         <a class="map-embed map-static reveal reveal-right" target="_blank" rel="noopener" href="https://www.google.com/maps/search/?api=1&query=Campo+de+f%C3%BAtbol+Novo+Cubeleiro%2C+Corcubi%C3%B3n" aria-label="Abrir la ubicación de WAVE FEST en Google Maps">
           <svg class="route-map" viewBox="0 0 520 420" role="img" aria-labelledby="mapTitle mapDesc" xmlns="http://www.w3.org/2000/svg">
             <title id="mapTitle">Cómo llegar a WAVE FEST</title>
-            <desc id="mapDesc">Esquema de situación: Corcubión, en la Costa da Morte, a unos 90 km de Santiago de Compostela y de A Coruña.</desc>
+            <desc id="mapDesc">Esquema de situación: Corcubión, en la Costa da Morte, a unos 90 km de Santiago de Compostela, 100 km de A Coruña y 170 km de Vigo.</desc>
             <defs>
               <linearGradient id="mpSea" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#0bcbfb" stop-opacity=".22"/><stop offset="1" stop-color="#0bcbfb" stop-opacity="0"/></linearGradient>
               <linearGradient id="mpRoute" x1="1" y1="0" x2="0" y2="0"><stop offset="0" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb"/></linearGradient>
+              <mask id="mkR1" maskUnits="userSpaceOnUse" x="0" y="0" width="520" height="420"><path d="M404.3,367.0 Q251.2,304.5 98.1,322.0" class="mp-draw" pathLength="1"/></mask>
+              <mask id="mkR2" maskUnits="userSpaceOnUse" x="0" y="0" width="520" height="420"><path d="M467.3,39.1 Q282.7,140.55 98.1,322.0" class="mp-draw" pathLength="1"/></mask>
+              <mask id="mkR3" maskUnits="userSpaceOnUse" x="0" y="0" width="520" height="420"><path d="M318,410 Q372,396 404.3,367.0 Q251.2,304.5 98.1,322.0" class="mp-draw" pathLength="1"/></mask>
+              <radialGradient id="mpCar"><stop offset="0" stop-color="#ffffff"/><stop offset=".45" stop-color="#8ffcd4"/><stop offset="1" stop-color="#0bcbfb" stop-opacity="0"/></radialGradient>
               <pattern id="mpGrid" width="26" height="26" patternUnits="userSpaceOnUse"><path d="M26 0H0V26" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/></pattern>
             </defs>
             <rect width="520" height="420" fill="url(#mpGrid)"/>
             <rect width="150" height="420" fill="url(#mpSea)"/>
             <text x="18" y="398" class="mp-sea">Océano Atlántico</text>
-            <path d="M404.3,367.0 Q251.2,304.5 98.1,322.0" class="mp-route"/><text x="236" y="306" class="mp-km">≈ 90 km</text>
-            <path d="M467.3,39.1 Q282.7,140.55 98.1,322.0" class="mp-route"/><text x="262.7" y="150.55" class="mp-km">≈ 100 km</text>
+            <path id="mpP1" d="M404.3,367.0 Q251.2,304.5 98.1,322.0" class="mp-route" mask="url(#mkR1)"/><text x="236" y="306" class="mp-km k1">≈ 90 km</text>
+            <path id="mpP2" d="M467.3,39.1 Q282.7,140.55 98.1,322.0" class="mp-route" mask="url(#mkR2)"/><text x="262.7" y="150.55" class="mp-km k2">≈ 100 km</text>
+            <path id="mpP3" d="M318,410 Q372,396 404.3,367.0 Q251.2,304.5 98.1,322.0" class="mp-route" mask="url(#mkR3)"/><text x="262" y="414" text-anchor="end" class="mp-km k3">≈ 170 km</text>
             <circle cx="86.5" cy="213.6" r="3.5" class="mp-town-dot"/><text x="96.5" y="217.6" text-anchor="start" class="mp-town">Muxía</text><circle cx="64.3" cy="348.9" r="3.5" class="mp-town-dot"/><text x="56.3" y="364.9" text-anchor="end" class="mp-town">Fisterra</text><circle cx="335.2" cy="140.2" r="3.5" class="mp-town-dot"/><text x="345.2" y="144.2" text-anchor="start" class="mp-town">Carballo</text>
-            <circle cx="404.3" cy="367.0" r="5" class="mp-city-dot"/><text x="394.3" y="389.0" text-anchor="end" class="mp-city">Santiago</text><circle cx="467.3" cy="39.1" r="5" class="mp-city-dot"/><text x="457.3" y="29.1" text-anchor="end" class="mp-city">A Coruña</text>
+            <circle cx="404.3" cy="367.0" r="5" class="mp-city-dot"/><text x="414.3" y="372.0" text-anchor="start" class="mp-city">Santiago</text><circle cx="467.3" cy="39.1" r="5" class="mp-city-dot"/><text x="457.3" y="29.1" text-anchor="end" class="mp-city">A Coruña</text><circle cx="318" cy="410" r="5" class="mp-city-dot"/><text x="308" y="414" text-anchor="end" class="mp-city">Vigo</text>
+            <g class="mp-cars" aria-hidden="true">
+              <circle r="6" fill="url(#mpCar)"><animateMotion id="mpC1" dur="3.2s" begin="indefinite" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#mpP1"/></animateMotion></circle>
+              <circle r="6" fill="url(#mpCar)"><animateMotion id="mpC2" dur="3.8s" begin="indefinite" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#mpP2"/></animateMotion></circle>
+              <circle r="6" fill="url(#mpCar)"><animateMotion id="mpC3" dur="4.4s" begin="indefinite" repeatCount="indefinite" keyPoints="0;1" keyTimes="0;1" calcMode="spline" keySplines=".45 0 .55 1"><mpath href="#mpP3"/></animateMotion></circle>
+            </g>
             <circle cx="98.1" cy="322.0" r="18" class="mp-pulse"/>
             <circle cx="98.1" cy="322.0" r="8" class="mp-pin"/>
             <text x="110.1" y="354.0" class="mp-here">WAVE FEST</text>
@@ -2487,6 +2510,16 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
     raf = pts.length ? requestAnimationFrame(draw) : 0;
     if (!raf) ctx.clearRect(0, 0, c.width, c.height);
   }
+})();
+// ---------- Mapa: las rutas se dibujan hasta Corcubión al llegar a Ubicación ----------
+(function(){
+  var map = document.querySelector('.route-map'); if (!map) return;
+  if (REDUCE_MOTION || !('IntersectionObserver' in window)){ map.classList.add('go', 'still'); return; }
+  var io = new IntersectionObserver(function(es){
+    if (!es[0].isIntersecting) return; io.disconnect(); map.classList.add('go');
+    setTimeout(function(){ ['mpC1', 'mpC2', 'mpC3'].forEach(function(id, i){ var a = document.getElementById(id); if (a && a.beginElement) setTimeout(function(){ try { a.beginElement(); } catch (e) {} }, i * 700); }); map.classList.add('cars'); }, 2300);
+  }, { threshold:.35 });
+  io.observe(map);
 })();
 // ---------- VIP: precio por persona ----------
 (function(){
