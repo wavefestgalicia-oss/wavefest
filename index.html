@@ -1527,6 +1527,37 @@ footer{padding-top:0;position:relative;overflow:hidden}
 .route-map.cars .mp-cars{opacity:1}
 .route-map .mp-cars circle{filter:drop-shadow(0 0 6px #0bcbfb)}
 @media (prefers-reduced-motion:reduce){.route-map .mp-cars{display:none}}
+
+/* ===== Entradas con forma de ticket ===== */
+.ticket-card.is-ticket{position:relative;padding-bottom:0;transform:perspective(900px) rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg)) translateY(var(--ty,0px));transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .3s,border-color .3s;transform-style:preserve-3d}
+.ticket-card.is-ticket.tilting{transition:transform .08s linear,box-shadow .3s,border-color .3s}
+@media (min-width:901px){.ticket-card.vip-plus.is-ticket{--ty:-10px}.ticket-card.vip-plus.is-ticket.reveal:not(.in-view){--ty:30px}}
+.ticket-card.is-ticket .line-sep{display:none}
+.ticket-card.is-ticket .access{margin-top:auto;padding-top:16px}
+.tk-stub{position:relative;display:flex;align-items:center;gap:12px;margin:18px -24px 0;padding:16px 24px 18px;border-top:2px dashed rgba(255,255,255,.18);background:linear-gradient(180deg,rgba(255,255,255,.035),rgba(255,255,255,.01));border-radius:0 0 18px 18px}
+.tk-stub::before,.tk-stub::after{content:"";position:absolute;top:-13px;width:24px;height:24px;border-radius:50%;background:var(--ink);border:1px solid var(--line)}
+.tk-stub::before{left:-13px;clip-path:inset(0 0 0 50%)}.tk-stub::after{right:-13px;clip-path:inset(0 50% 0 0)}
+.vip-plus .tk-stub::before,.vip-plus .tk-stub::after{border-color:rgba(143,252,212,.55)}
+.tk-bar{flex:none;width:92px;height:30px;opacity:.75;background:repeating-linear-gradient(90deg,#fff 0 2px,transparent 2px 4px,#fff 4px 5px,transparent 5px 8px,#fff 8px 11px,transparent 11px 13px,#fff 13px 14px,transparent 14px 17px)}
+.vip-plus .tk-bar{background:repeating-linear-gradient(90deg,#8ffcd4 0 2px,transparent 2px 4px,#8ffcd4 4px 5px,transparent 5px 8px,#8ffcd4 8px 11px,transparent 11px 13px,#8ffcd4 13px 14px,transparent 14px 17px)}
+.tk-code{font:700 11px/1.2 ui-monospace,SFMono-Regular,Menlo,monospace;letter-spacing:.12em;color:var(--chrome)}
+.tk-date{margin-left:auto;font:800 12px var(--font-ui);letter-spacing:.1em;color:var(--aqua)}
+.ticket-card.is-ticket::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(420px circle at var(--sx,50%) var(--sy,0%),rgba(255,255,255,.09),transparent 45%);opacity:0;transition:opacity .3s}
+.ticket-card.is-ticket.tilting::before{opacity:1}
+/* ===== Menú con subrayado de ola ===== */
+nav.links a::after{height:8px;bottom:-6px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='8' viewBox='0 0 24 8'%3E%3Cpath d='M0 4 Q6 0 12 4 T24 4' fill='none' stroke='%238ffcd4' stroke-width='2'/%3E%3C/svg%3E") repeat-x 0 50%/12px 8px;animation:navWave .8s linear infinite;animation-play-state:paused}
+nav.links a:hover::after,nav.links a:focus-visible::after{animation-play-state:running}
+@keyframes navWave{to{background-position:12px 50%}}
+/* ===== Barra de progreso en forma de ola ===== */
+.scroll-progress{height:8px;box-shadow:none;filter:drop-shadow(0 0 6px rgba(11,203,251,.8));-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0/20px 8px;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='10' viewBox='0 0 40 10'%3E%3Cpath d='M0 5 Q10 0 20 5 T40 5' fill='none' stroke='%23000' stroke-width='3'/%3E%3C/svg%3E") repeat-x 0 0/20px 8px;animation:progWave 1.2s linear infinite}
+@keyframes progWave{to{-webkit-mask-position:20px 0;mask-position:20px 0}}
+/* ===== Esqueletos mientras carga la hoja ===== */
+@keyframes shimmer{to{background-position:-200% 0}}
+.is-loading .lineup-card{background:linear-gradient(100deg,#1c1c1c 30%,#2a2f31 50%,#1c1c1c 70%) 0 0/200% 100%;animation:shimmer 1.3s linear infinite}
+.is-loading .lineup-card > *{visibility:hidden}
+.is-loading .lineup-card::after,.is-loading .lineup-card::before{display:none}
+.is-loading .ticket-card .price,.is-loading .ticket-card .tramo-tag{color:transparent!important;-webkit-text-fill-color:transparent!important;background:linear-gradient(100deg,#232323 30%,#33393b 50%,#232323 70%) 0 0/200% 100%!important;-webkit-background-clip:border-box!important;background-clip:border-box!important;border-radius:10px;animation:shimmer 1.3s linear infinite;width:fit-content}
+@media (prefers-reduced-motion:reduce){.scroll-progress,nav.links a::after,.is-loading .lineup-card,.is-loading .ticket-card .price{animation:none}.ticket-card.is-ticket{transform:none}}
 </style>
 </head>
 <body>
@@ -2328,8 +2359,11 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
     return m ? 'https://drive.google.com/thumbnail?id=' + m[1] + '&sz=w640' : u;
   }
   // Cartel
+  function loading(sel, on){ var el = document.querySelector(sel); if (el) el.classList.toggle('is-loading', on); }
   if (CFG.LINEUP_CSV && window.WAVE_renderLineup){
+    loading('.lineup-grid', true); setTimeout(function(){ loading('.lineup-grid', false); }, 6000);
     fetchCSV(CFG.LINEUP_CSV).then(function(csv){
+      loading('.lineup-grid', false);
       var rows = toObjects(csv).filter(function(o){ return o.nombre || o.estado; });
       if (!rows.length) return;
       var defs = window.WAVE_DEFAULT_LINEUP.filter(function(d){ return d.confirmed; });
@@ -2340,7 +2374,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
         return { confirmed: true, name: o.nombre, photo: photoUrl(o.foto) || d.photo || '', instagram: o.instagram || d.instagram || '' };
       });
       window.WAVE_renderLineup(list);
-    }).catch(function(e){ console.warn('WAVE FEST: no se pudo cargar el cartel, se usa el cartel por defecto.', e); });
+    }).catch(function(e){ loading('.lineup-grid', false); console.warn('WAVE FEST: no se pudo cargar el cartel, se usa el cartel por defecto.', e); });
   }
   // Patrocinadores: principal / patrocinador / colaborador
   if (CFG.SPONSORS_CSV){
@@ -2366,7 +2400,9 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
   }
   // Precios de entradas
   if (CFG.TICKETS_CSV){
+    loading('.tickets-grid', true); setTimeout(function(){ loading('.tickets-grid', false); }, 6000);
     fetchCSV(CFG.TICKETS_CSV).then(function(csv){
+      loading('.tickets-grid', false);
       var rows = toObjects(csv);
       document.querySelectorAll('.ticket-card').forEach(function(card){
         var h = card.querySelector('h3'), price = card.querySelector('.price');
@@ -2389,7 +2425,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
           document.querySelectorAll('.tramo-tag').forEach(function(t){ t.textContent = 'Precio tramo ' + num; });
         }
       }
-    }).catch(function(e){ console.warn('WAVE FEST: no se pudieron cargar los precios, se usan los de la web.', e); });
+    }).catch(function(e){ loading('.tickets-grid', false); console.warn('WAVE FEST: no se pudieron cargar los precios, se usan los de la web.', e); });
   }
 })();
 // ---------- Cifras que suben al aparecer ----------
@@ -2520,6 +2556,27 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
     setTimeout(function(){ ['mpC1', 'mpC2', 'mpC3'].forEach(function(id, i){ var a = document.getElementById(id); if (a && a.beginElement) setTimeout(function(){ try { a.beginElement(); } catch (e) {} }, i * 700); }); map.classList.add('cars'); }, 2300);
   }, { threshold:.35 });
   io.observe(map);
+})();
+// ---------- Entradas con forma de ticket: talón troquelado y relieve 3D ----------
+(function(){
+  var codes = { 'general':'GEN', 'front stage':'FRS', 'vip':'VIP' };
+  document.querySelectorAll('.tickets-grid .ticket-card').forEach(function(card, i){
+    var h = card.querySelector('h3'), k = codes[(h ? h.textContent : '').trim().toLowerCase()] || 'WF';
+    var stub = document.createElement('div'); stub.className = 'tk-stub'; stub.setAttribute('aria-hidden', 'true');
+    stub.innerHTML = '<span class="tk-bar"></span><span class="tk-code">WF27·' + k + '·' + String(i + 1).padStart(4, '0') + '</span><span class="tk-date">31.07.2027</span>';
+    card.appendChild(stub);
+    card.classList.add('is-ticket');
+  });
+  if (REDUCE_MOTION || !matchMedia('(hover: hover) and (pointer: fine)').matches) return;
+  document.querySelectorAll('.tickets-grid .ticket-card').forEach(function(card){
+    card.addEventListener('pointermove', function(e){
+      var r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+      card.style.setProperty('--rx', (-y * 8).toFixed(2) + 'deg'); card.style.setProperty('--ry', (x * 10).toFixed(2) + 'deg');
+      card.style.setProperty('--sx', ((x + .5) * 100).toFixed(1) + '%'); card.style.setProperty('--sy', ((y + .5) * 100).toFixed(1) + '%');
+      card.classList.add('tilting');
+    });
+    card.addEventListener('pointerleave', function(){ card.classList.remove('tilting'); card.style.setProperty('--rx', '0deg'); card.style.setProperty('--ry', '0deg'); });
+  });
 })();
 // ---------- VIP: precio por persona ----------
 (function(){
@@ -2749,7 +2806,7 @@ var REDUCE_MOTION = window.matchMedia && window.matchMedia('(prefers-reduced-mot
 (function(){
   if (REDUCE_MOTION) return;
   if (window.matchMedia && window.matchMedia('(hover: none)').matches) return;
-  var cards = document.querySelectorAll('.ticket-card, .lineup-card');
+  var cards = document.querySelectorAll('.lineup-card'); // las entradas tienen su propio relieve (más abajo)
   cards.forEach(function(card){
     var rect;
     function onMove(e){
